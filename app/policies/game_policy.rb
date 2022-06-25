@@ -13,7 +13,15 @@ class GamePolicy < ApplicationPolicy
     record.hosted_by?(user)
   end
 
+  def start_question?
+    record.hosted_by?(user)
+  end
+
   def finish_question?
+    record.hosted_by?(user)
+  end
+
+  def answer_question?
     record.hosted_by?(user)
   end
 end

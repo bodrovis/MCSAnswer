@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class TeamsController < BaseController
     before_action :set_team!, only: %i[destroy edit update show]

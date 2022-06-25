@@ -6,19 +6,18 @@
 <% unless @game.finished? %>
   <%= turbo_stream_from(@game, :questions) %>
 
-  <% if policy(@game).next_question? %>
-    <%= link_to 'Следующий вопрос', next_question_game_path(@game), class: 'btn btn-warning',
-      data: {turbo_method: :patch, turbo_confirm: t('global.dialog.sure')} %>
-  <% end %>
-  
-  <% if policy(@game).finish_question? %>
+  <% if @game.hosted_by? current_user %>
     <% if @game.current_question.present? %>
-      <%= link_to 'Закончить вопрос', finish_question_game_path(@game), class: 'btn btn-warning',
-        data: {turbo_method: :patch, turbo_confirm: t('global.dialog.sure')} %>
+      <%= render 'questions/finish_question' %>
+    <% else %>
+      <%= render 'questions/next_question' %>
     <% end %>
   <% end %>
 
-  <% if @game.current_question.present? %>
-    <%= render 'current_question', question: @game.current_question %>
-  <% end %>
+  <article data-controller="timer" id="question-data">
+    <% if @game.current_question.present? %>
+      <%= render 'timer' %>
+      <%= render 'questions/current_question', question: @game.current_question %>
+    <% end %>
+  </div>
 <% end %>

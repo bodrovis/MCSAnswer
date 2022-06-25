@@ -13,13 +13,7 @@ class SessionsController < ApplicationController
     auth = @user&.authenticate(params[:password])
 
     if check && auth
-      sign_in @user
-      respond_to do |format|
-        format.turbo_stream do
-          flash[:success] = t('.success', name: current_user.name)
-          @path = root_path
-        end
-      end
+      do_sign_in
     else
       flash.now[:warning] = t('recaptcha.errors.verification_failed') unless check
       flash.now[:warning] = t('.invalid_creds') if check && !auth
@@ -42,5 +36,15 @@ class SessionsController < ApplicationController
   def verify_captchas
     verify_recaptcha(action: 'login', minimum_score: 0.7, secret_key: ENV.fetch('RECAPTCHA_SECRET_V3', nil)) ||
       verify_recaptcha(secret_key: ENV.fetch('RECAPTCHA_SECRET', nil))
+  end
+
+  def do_sign_in
+    sign_in @user
+    respond_to do |format|
+      format.turbo_stream do
+        flash[:success] = t('.success', name: current_user.name)
+        @path = root_path
+      end
+    end
   end
 end

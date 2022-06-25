@@ -32,7 +32,9 @@ Rails.application.routes.draw do
   resources :games, only: %i[index show] do
     member do
       patch 'next_question'
+      patch 'start_question'
       patch 'finish_question'
+      patch 'answer_question'
     end
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class GamePlayersController < BaseController
     before_action :set_game!

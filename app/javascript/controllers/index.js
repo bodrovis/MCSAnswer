@@ -15,3 +15,6 @@ application.register("reset-form", ResetFormController)
 
 import Recaptchav2Controller from "./recaptcha_v2_controller";
 application.register("recaptcha-v2", Recaptchav2Controller)
+
+import TimerController from "./timer_controller";
+application.register("timer", TimerController)

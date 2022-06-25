@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateGamePlayers < ActiveRecord::Migration[7.0]
   def change
     create_table :game_players do |t|
@@ -8,7 +10,7 @@ class CreateGamePlayers < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index :game_players, [:user_id, :team_game_id], unique: true
-    add_index :game_players, [:user_id, :team_game_id, :captain], unique: true
+    add_index :game_players, %i[user_id team_game_id], unique: true
+    add_index :game_players, %i[user_id team_game_id captain], unique: true
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class TeamGamesController < BaseController
     before_action :set_game!
@@ -32,7 +34,7 @@ module Admin
         end
       end
     end
-    
+
     private
 
     def set_game!

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GamePlayer < ApplicationRecord
   belongs_to :user
   belongs_to :team_game
@@ -11,8 +13,8 @@ class GamePlayer < ApplicationRecord
   private
 
   def not_registered
-    return unless self.class.where(user: self.user, team_game: self.team_game.game.team_games).any?
+    return unless self.class.where(user:, team_game: team_game.game.team_games).any?
 
-    errors.add(:user, "уже заявлен")
+    errors.add(:user, 'уже заявлен')
   end
 end

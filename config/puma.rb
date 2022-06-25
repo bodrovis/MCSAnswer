@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # # frozen_string_literal: true
 
 # workers Integer(ENV.fetch('WEB_CONCURRENCY', 2))
