@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "#{dom_id(game_player.team_game)}_#{dom_id(game_player)}}" do %>
+  <%= game_player.name_with_email %>
+  <% if game_player.captain? %>
+    <small>капитан</small>
+  <% end %>
+
+  <%= link_to t('global.button.edit'), edit_admin_game_team_game_game_player_path(game_player.team_game.game, game_player.team_game, game_player),
+      class: 'btn btn-secondary btn-sm' %>
+
+  <%= link_to t('global.button.delete'), admin_game_team_game_game_player_path(game_player.team_game.game, game_player.team_game, game_player),
+      class: 'btn btn-danger btn-sm',
+      data: {turbo_method: :delete, turbo_confirm: t('global.dialog.sure')} %>
+  <hr>
+<% end %>

@@ -1,0 +1,28 @@
+<%= turbo_frame_tag user do %>
+  <h1 class="mb-4"><%= user.name %></h1>
+
+  <div class="mb-3">
+    <%= gravatar_for(user: user, size: 200) %>
+  </div>
+
+  <% scope = 'activerecord.attributes.user' %>
+
+  <p>
+    <strong><%= t 'role', scope: scope %></strong>
+    <%= t(user.role, scope: 'global.user.roles') %>
+  </p>
+
+  <p>
+    <strong><%= t 'games_played', scope: scope %></strong>
+    <%= user.games_played %>
+  </p>
+
+  <p>
+    <strong><%= t 'games_won', scope: scope %></strong>
+    <%= user.games_won %>
+  </p>
+
+  <% if policy(user).update? %>
+    <%= link_to t('global.button.edit'), edit_user_path(user), class: 'btn btn-secondary' %>
+  <% end %>
+<% end %>

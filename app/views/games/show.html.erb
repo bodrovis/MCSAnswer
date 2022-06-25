@@ -1,0 +1,24 @@
+<% provide :page_title, @game.title %>
+<% currently_at t('menu.games') %>
+
+<h1 class="mb-4"><%= @game.title %></h1>
+
+<% unless @game.finished? %>
+  <%= turbo_stream_from(@game, :questions) %>
+
+  <% if policy(@game).next_question? %>
+    <%= link_to 'Следующий вопрос', next_question_game_path(@game), class: 'btn btn-warning',
+      data: {turbo_method: :patch, turbo_confirm: t('global.dialog.sure')} %>
+  <% end %>
+  
+  <% if policy(@game).finish_question? %>
+    <% if @game.current_question.present? %>
+      <%= link_to 'Закончить вопрос', finish_question_game_path(@game), class: 'btn btn-warning',
+        data: {turbo_method: :patch, turbo_confirm: t('global.dialog.sure')} %>
+    <% end %>
+  <% end %>
+
+  <% if @game.current_question.present? %>
+    <%= render 'current_question', question: @game.current_question %>
+  <% end %>
+<% end %>

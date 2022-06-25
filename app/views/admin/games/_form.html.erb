@@ -1,0 +1,53 @@
+<%= form_with model: [:admin, game], data: {'turbo': false} do |f| %>
+  <%= render 'shared/errors', object: game %>
+
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :title %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+  </div>
+  
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :description %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :starts_at %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.datetime_local_field :starts_at, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :host_id %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.collection_select :host_id, User.all, :id, :name_with_email, {}, class: 'form-select' %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="form-check">
+      <%= f.label :finished, class: 'form-check-label' %>
+
+      <%= f.check_box :finished, class: 'form-check-input' %>
+    </div>
+  </div>
+
+  <%= f.submit t('global.button.submit'), class: 'btn btn-primary' %>
+<% end %>

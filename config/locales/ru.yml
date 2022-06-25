@@ -1,0 +1,154 @@
+ru:
+  activerecord:
+    attributes:
+      game_player:
+        user_id: Пользователь
+        user: Пользователь
+        captain: Капитан
+      team_game:
+        team_id: Команда
+      team:
+        title: Название
+      question:
+        body: Текст вопроса
+        answer: Ответ
+        position: Позиция
+        current: Текущий
+        answered: Отвечен
+      game:
+        title: Название
+        description: Описание
+        starts_at: Дата и время начала
+        host_id: Ведущий
+        finished: Завершена
+      user:
+        email: E-mail
+        name: Имя
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        role: Роль
+  time:
+    formats:
+      longer: "%d %B %Y, %H:%M %z"
+  recaptcha:
+    errors:
+      verification_failed: 'Проверка reCAPTCHA не пройдена.'
+      recaptcha_unreachable: 'Проверка reCAPTCHA закончилась с ошибкой. Пожалуйста, попробуйте ещё раз.'
+  menu:
+    home: Главная
+    sign_up: Регистрация
+    log_out: Выйти
+    log_in: Войти
+    games: Игры
+    games_admin: Игры (админ)
+    users_admin: Юзеры (админ)
+    teams_admin: Команды (админ)
+    profile: Профиль
+  global:
+    errors:
+      invalid_format: имеет неверный формат
+    user:
+      roles:
+        basic: Пользователь
+        moderator: Модератор
+        admin: Админ
+      button:
+        register: Регистрация
+        save: Сохранить
+    button:
+      submit: Отправить
+      delete: Удалить
+      manage: Управление
+      edit: Изменить
+    dialog:
+      sure: Вы уверены?
+    flash:
+      not_signed_in: Вы не вошли в систему.
+      already_signed_in: Вы уже вошли в систему.
+      not_authorized: У вас нет прав на выполнение этого действия.
+  admin:
+    teams:
+      index:
+        title: Команды
+        new: Добавить
+      new:
+        title: Добавить команду
+      create:
+        success: Команда добавлена!
+      update:
+        success: Команда обновлена!
+      destroy:
+        success: Команда удалена!
+    users:
+      index:
+        title: Пользователи
+      destroy:
+        success: Пользователь удалён!
+    questions:
+      create:
+        success: Вопрос добавлен!
+      update:
+        success: Вопрос изменён!
+      destroy:
+        success: Вопрос удалён!
+    game_players:
+      create:
+        success: Игрок добавлен!
+      destroy:
+        success: Игрок удалён!
+      update:
+        success: Игрок обновлён!
+    team_games:
+      team_game:
+        add_game_player: Добавить игрока
+      create:
+        success: Команда добавлена!
+      destroy:
+        success: Команда удалена!
+    games:
+      new:
+        title: Новая игра
+      edit:
+        title: Редактировать игру
+      create:
+        success: Игра создана!
+      index:
+        title: Игры
+        new: Создать игру
+      destroy:
+        success: Игра удалена!
+      update:
+        success: Игра обновлена!
+      show:
+        add_question: Добавить вопрос
+        add_team_game: Добавить команду
+  games:
+    index:
+      title: Игры
+    show:
+      finish_game:
+        Закончить игру
+    finish:
+      success: Игра завершена
+  pages:
+    index:
+      title: Главная
+  users:
+    update:
+      success: Профиль обновлён!
+    new:
+      title: Регистрация
+    create:
+      success: Добро пожаловать, %{name}!
+  sessions:
+    form:
+      email: E-mail
+      password: Пароль
+      submit: Войти!
+    new:
+      title: Войти
+    create:
+      invalid_creds: Неверный email и/или пароль!
+      success: С возвращением, %{name}!
+    destroy:
+      success: До новых встреч!

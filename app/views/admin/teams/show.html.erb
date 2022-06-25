@@ -1,0 +1,8 @@
+<% provide :page_title, @team.title %>
+<% currently_at t('menu.teams_admin') %>
+
+<%= turbo_frame_tag @team do %>
+  <h1 class="mb-4"><%= @team.title %></h1>
+<% end %>
+
+<%= link_to t('global.button.edit'), edit_admin_team_path(@team), class: 'btn btn-secondary' %>

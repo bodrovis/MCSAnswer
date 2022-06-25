@@ -1,0 +1,26 @@
+<%= turbo_frame_tag question do %>
+  <section class="mb-3">
+    <p>
+      <strong>Текст вопроса</strong><br>
+      <%= question.body %>
+    </p>
+    
+    <p>
+      <strong>Ответ</strong><br>
+      <%= question.answer %>
+    </p>
+
+    <p>
+      <strong>Позиция</strong><br>
+      <%= question.position %>
+    </p>
+
+    <%= link_to t('global.button.edit'), edit_admin_game_question_path(question.game, question),
+      class: 'btn btn-info btn-sm' %>
+    <%= link_to t('global.button.delete'), admin_game_question_path(question.game, question),
+      class: 'btn btn-danger btn-sm',
+      data: {turbo_method: :delete, turbo_confirm: t('global.dialog.sure')} %>
+
+    <hr>
+  </section>
+<% end %>

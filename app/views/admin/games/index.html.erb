@@ -1,0 +1,10 @@
+<% provide :page_title, t('.title') %>
+<% currently_at t('menu.games_admin') %>
+
+<h1 class="mb-4"><%= t('.title') %></h1>
+
+<%= link_to t('.new'), new_admin_game_path, class: 'btn btn-primary btn-lg' %>
+
+<article class="mt-4">
+  <%= render @games %>
+</article>

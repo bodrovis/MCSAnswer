@@ -1,0 +1,28 @@
+<%= turbo_frame_tag game do %>
+  <h2>
+    <%= link_to game.title, game_path(game), data: {turbo_frame: '_top'} %>
+  </h2>
+
+  <% if game.starts_at.present? %>
+    (<%= l game.starts_at, format: :longer %>)
+  <% end %>
+
+  <br>
+
+  <p>Ведущий: <%= game.host.name %></p>
+  
+  <small>
+    <%= game.description %>
+  </small>
+
+  <br>
+
+  <%= link_to t('global.button.edit'), edit_admin_game_path(game), class: 'btn btn-secondary', data: {turbo_frame: '_top'} %>
+
+  <%= link_to t('global.button.manage'), admin_game_path(game), class: 'btn btn-info', data: {turbo_frame: '_top'} %>
+
+  <%= link_to t('global.button.delete'), admin_game_path(game), class: 'btn btn-danger',
+    data: {turbo_method: :delete, turbo_confirm: t('global.dialog.sure')} %>
+
+  <hr>
+<% end %>

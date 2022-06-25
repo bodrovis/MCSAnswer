@@ -1,0 +1,17 @@
+<h2>
+  <%= link_to game.title, game_path(game), data: {turbo_frame: '_top'} %>
+</h2>
+
+<% if game.starts_at.present? %>
+  (<%= l game.starts_at, format: :longer %>)
+<% end %>
+
+<br>
+
+<p>Ведущий: <%= game.host.name %></p>
+
+<small>
+  <%= game.description %>
+</small>
+
+<hr>

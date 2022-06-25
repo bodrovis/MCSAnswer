@@ -1,0 +1,53 @@
+<%= turbo_frame_tag question do %>
+  <%= form_with model: [:admin, question.game, question], data: {controller: "reset-form", action: "turbo:submit-end->reset-form#reset"} do |f| %>
+    <%= render 'shared/errors', object: question %>
+    
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :body %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.text_area :body, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :answer %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.text_area :answer, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :position %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.number_field :position, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="form-check">
+        <%= f.label :current, class: 'form-check-label' %>
+
+        <%= f.check_box :current, class: 'form-check-input' %>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="form-check">
+        <%= f.label :answered, class: 'form-check-label' %>
+
+        <%= f.check_box :answered, class: 'form-check-input' %>
+      </div>
+    </div>
+
+    <%= f.submit t('global.button.submit'), class: 'btn btn-primary' %>
+  <% end %>
+<% end %>

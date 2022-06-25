@@ -1,0 +1,53 @@
+<% provide :page_title, @game.title %>
+<% currently_at t('menu.games_admin') %>
+
+<h1 class="mb-4">
+  <%= @game.title %>
+  <% if @game.starts_at.present? %>
+    <small><%= l @game.starts_at, format: :longer %></small>
+  <% end %>
+</h1>
+
+<p>Ведущий: <%= @game.host.name %></p>
+
+<p>
+  <%= @game.description %>
+</p>
+
+<h2>
+  <%= link_to "Команды", "#team-games-list", data: {'bs-toggle': 'collapse'} %>
+</h2>
+
+<%= link_to t('.add_team_game'), new_admin_game_team_game_path(@game), class: 'btn btn-primary',
+  data: { turbo_frame: dom_id(TeamGame.new) } %>
+
+<div class="my-3">
+  <%= turbo_frame_tag TeamGame.new %>
+</div>
+
+<div class="collapse show mt-2" id="team-games-list">
+  <article>
+    <%= turbo_frame_tag "team-games" do %>
+      <%= render @game.team_games.includes(:team, game_players: :user).order(created_at: :asc) %>
+    <% end %>
+  </article>
+</div>
+
+<h2 class="mt-5">
+  <%= link_to "Вопросы", "#questions-list", data: {'bs-toggle': 'collapse'} %>
+</h2>
+
+<%= link_to t('.add_question'), new_admin_game_question_path(@game), class: 'btn btn-primary',
+  data: { turbo_frame: dom_id(Question.new) } %>
+
+<div class="my-3">
+  <%= turbo_frame_tag Question.new %>
+</div>
+
+<div class="collapse show mt-2" id="questions-list">
+  <article>
+    <%= turbo_frame_tag "questions" do %>
+      <%= render @game.questions.order(position: :asc) %>
+    <% end %>
+  </article>
+</div>

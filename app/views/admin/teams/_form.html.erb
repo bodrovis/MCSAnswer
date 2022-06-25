@@ -1,0 +1,17 @@
+<%= turbo_frame_tag team do %>
+  <%= form_with model: [:admin, team] do |f| %>
+    <%= render 'shared/errors', object: team %>
+
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :title %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+    </div>
+
+    <%= f.submit t('global.button.submit'), class: 'btn btn-primary' %>
+  <% end %>
+<% end %>

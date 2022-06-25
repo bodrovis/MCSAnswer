@@ -1,0 +1,29 @@
+<%= turbo_frame_tag 'new_session' do |f| %>
+  <%= form_with url: session_path do |f| %>
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :email, t('.email') %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.email_field :email, value: params[:email], class: 'form-control form-control-lg' %>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :password, t('.password') %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.password_field :password, class: 'form-control form-control-lg' %>
+      </div>
+    </div>
+
+    <%= turbo_frame_tag 'recaptcha' do %>
+      <%= recaptcha_v3 action: 'login', site_key: ENV['RECAPTCHA_KEY_V3'], turbolinks: true %>
+    <% end %>
+
+    <%= f.submit t('.submit'), class: 'btn btn-primary btn-lg' %>
+  <% end %>
+<% end %>

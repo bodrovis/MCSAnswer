@@ -1,0 +1,68 @@
+<%= turbo_frame_tag user do |f| %>
+  <%= form_with model: user do |f| %>
+    <%= render 'shared/errors', object: user %>
+
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :email %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.email_field :email, class: 'form-control form-control-lg' %>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :name %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.text_field :name, class: 'form-control form-control-lg' %>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :role %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.text_field :role, value: t(user.role, scope: 'global.user.roles'),
+          class: 'form-control-plaintext form-control-lg', readonly: true %>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :password %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.password_field :password, class: 'form-control form-control-lg' %>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :password_confirmation %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.password_field :password_confirmation, class: 'form-control form-control-lg' %>
+      </div>
+    </div>
+
+    <% t_key = (user.new_record? ? "register" : "save") %>
+
+    <% if user.new_record? %>
+      <%= turbo_frame_tag 'recaptcha' do %>
+        <div class="mb-3 row">
+          <%= recaptcha_v3 action: 'signup', site_key: ENV['RECAPTCHA_KEY_V3'], turbolinks: true %>
+        </div>
+      <% end %>
+    <% end %>
+    
+    <%= f.submit t(t_key, scope: 'global.user.button'), class: 'btn btn-primary btn-lg' %>
+  <% end %>
+<% end %>

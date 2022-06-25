@@ -1,0 +1,10 @@
+<%= turbo_frame_tag user do %>
+  <%= gravatar_for user: user %>
+  <%= user.name %>
+  <%= user.email %>
+  <%= link_to t('global.button.delete'), admin_user_path(user),
+    class: 'btn btn-danger btn-sm',
+    data: {turbo_method: :delete, turbo_confirm: t('global.dialog.sure')} %>
+    
+  <hr>
+<% end %>

@@ -1,0 +1,22 @@
+<%= turbo_frame_tag team_game do %>
+  <article class="my-3">
+    <h3><%= team_game.title %></h3>
+    
+    <%= link_to t('.add_game_player'), new_admin_game_team_game_game_player_path(team_game.game, team_game), class: 'btn btn-primary btn-sm',
+      data: { turbo_frame: "#{dom_id(team_game)}_#{dom_id(GamePlayer.new)}}" } %>
+
+    <%= link_to t('global.button.delete'), admin_game_team_game_path(team_game.game, team_game),
+      class: 'btn btn-danger btn-sm',
+      data: {turbo_method: :delete, turbo_confirm: t('global.dialog.sure')} %>
+
+    <div class="my-3">
+      <%= turbo_frame_tag "#{dom_id(team_game)}_#{dom_id(GamePlayer.new)}}" %>
+    </div>
+
+    <%= turbo_frame_tag "#{dom_id(team_game)}_players" do %>
+      <%= render team_game.game_players %>
+    <% end %>
+    
+    <hr>
+  </article>
+<% end %>

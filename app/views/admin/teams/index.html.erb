@@ -1,0 +1,16 @@
+<% provide :page_title, t('.title') %>
+<% currently_at t('menu.teams_admin') %>
+
+<h1 class="mb-4"><%= t('.title') %></h1>
+
+<%= link_to t('.new'), new_admin_team_path, class: 'btn btn-primary btn-lg', data: { turbo_frame: dom_id(Team.new) } %>
+
+<div class="my-3">
+  <%= turbo_frame_tag Team.new %>
+</div>
+
+<article class="mt-4">
+  <%= turbo_frame_tag "teams" do %>
+    <%= render @teams %>
+  <% end %>
+</article>
