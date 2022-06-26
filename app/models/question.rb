@@ -10,6 +10,6 @@ class Question < ApplicationRecord
   validates :current, uniqueness: { scope: :game }, if: :current?
 
   def answer_by(team)
-    answers.where(answers: {playing_team: team}).first
+    answers.where(answers: { playing_team: team }).first
   end
 end

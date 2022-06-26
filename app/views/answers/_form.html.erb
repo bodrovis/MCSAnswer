@@ -1,0 +1,8 @@
+<%= turbo_frame_tag answer do %>
+  <%= form_with model: [game, answer] do |f| %>
+    <%= render 'shared/errors', object: answer %>
+
+    <%= f.text_field :body, class: 'form-control' %>
+    <%= f.submit t('global.button.submit'), class: 'btn btn-primary btn-sm' %>
+  <% end %>
+<% end %>

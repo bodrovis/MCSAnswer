@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   resources :games, only: %i[index show] do
     resources :playing_teams, only: %i[index]
 
-    resources :answers, only: %i[index create] do
+    resources :answers, only: %i[index create edit update] do
       member do
         patch 'toggle'
       end
@@ -51,7 +51,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create show edit update index]
 
   resource :session, only: %i[new create destroy]
-  
+
   root 'pages#index'
 end
 # rubocop:enable Metrics/BlockLength

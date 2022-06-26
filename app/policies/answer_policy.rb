@@ -16,4 +16,9 @@ class AnswerPolicy < ApplicationPolicy
     record.game.hosted_by?(user) ||
       user.admin_role?
   end
+
+  def update?
+    record.game.hosted_by?(user) ||
+      user.admin_role?
+  end
 end

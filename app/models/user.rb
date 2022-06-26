@@ -19,7 +19,7 @@ class User < ApplicationRecord
   before_create :name_from_email, unless: proc { name.present? }
 
   def in_game(game)
-    self.game_players.joins(playing_team: :game).where(playing_team: {game: game}).first
+    game_players.joins(playing_team: :game).where(playing_team: { game: }).first
   end
 
   def guest?

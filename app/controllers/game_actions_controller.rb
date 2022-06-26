@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GameActionsController < ApplicationController
   before_action :set_game!
   before_action :authorize_game!
@@ -6,7 +8,7 @@ class GameActionsController < ApplicationController
   def answer_question
     @current_question = @game.current_question
     @current_question.update answered: true
-    
+
     broadcast [@game, 'questions'], 'game_actions/answer'
 
     respond_to do |format|
@@ -29,7 +31,7 @@ class GameActionsController < ApplicationController
       @next_question = @game.next_question current_question
 
       if @next_question.present?
-        @next_question.toggle!(:current)
+        @next_question.toggle!(:current) # rubocop:disable Rails/SkipsModelValidations
       else
         @game.update finished: true
       end

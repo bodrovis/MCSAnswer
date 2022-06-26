@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 class AnswersController < ApplicationController
   before_action :require_authentication
-  before_action :set_game!, except: :toggle
+  before_action :set_game!
   before_action :set_question!, only: :create
+  before_action :set_answer!, only: %i[edit update]
   after_action :verify_authorized
 
   def index
@@ -12,9 +15,9 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new question: @question,
-    playing_team: current_user.in_game(@game)&.playing_team,
-    game: @game,
-    body: params[:answer]
+                         playing_team: current_user.in_game(@game)&.playing_team,
+                         game: @game,
+                         body: params[:answer]
 
     authorize @answer
 
@@ -25,23 +28,47 @@ class AnswersController < ApplicationController
   end
 
   def toggle
-    game = Game.find params[:game_id]
-    @answer = game.answers.find params[:id]
+    @answer = @game.answers.find params[:id]
     @team = @answer.playing_team
     @question = @answer.question
 
     authorize @answer
 
-    @answer.toggle! :correct
+    @answer.toggle! :correct # rubocop:disable Rails/SkipsModelValidations
 
-    broadcast [game, :answers], 'answers/toggle'
+    broadcast [@game, :answers], 'answers/toggle'
 
     respond_to do |format|
       format.turbo_stream { head(:ok) }
     end
   end
 
+  def edit
+    authorize @answer
+  end
+
+  def update
+    authorize @answer
+
+    if @answer.update answer_params
+      @team = @answer.playing_team
+      @question = @answer.question
+
+      broadcast [@game, :answers], 'answers/toggle'
+
+      respond_to do |format|
+        format.turbo_stream { head(:ok) }
+      end
+    else
+      render :edit
+    end
+  end
+
   private
+
+  def set_answer!
+    @answer = @game.answers.find params[:id]
+  end
 
   def set_game!
     @game = Game.find(params[:game_id])
@@ -49,5 +76,9 @@ class AnswersController < ApplicationController
 
   def set_question!
     @question = @game.questions.find params[:question_id]
+  end
+
+  def answer_params
+    params.require(:answer).permit(:body)
   end
 end
