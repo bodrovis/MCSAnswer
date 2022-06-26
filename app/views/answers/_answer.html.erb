@@ -1,0 +1,11 @@
+<%= tag.td id: "#{dom_id(question)}_#{dom_id(team)}", width: '10%',
+  class: (answer&.correct? ? 'bg-success js-correct' : 'js-incorrect'),
+  style: '--bs-bg-opacity: .2', data: {'team-results-target': 'answer'} do %>
+  <% if answer.present? %>
+    <%= tag.abbr (answer.body.present? ? answer.body : tag.em("Нет ответа")), title: l(answer.created_at) %>
+    <div class="d-none js-actions">
+      <%= link_to (answer.correct? ? 'Нет' : 'Да'), toggle_game_answer_path(answer.game, answer),
+        class: 'btn btn-sm btn-secondary', data: {turbo_method: :patch} %>
+    </div>
+  <% end %>
+<% end %>

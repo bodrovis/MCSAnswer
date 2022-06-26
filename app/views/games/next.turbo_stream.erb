@@ -1,4 +1,0 @@
-<%= turbo_stream.remove 'question-answer' %>
-<%= turbo_stream.remove 'current-question' %>
-<%= turbo_stream.append "question-data", partial: 'questions/current_question', locals: { question: @next_question } %>
-<%= turbo_stream.replace "current-action", partial: 'questions/start_question' %>

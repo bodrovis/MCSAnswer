@@ -1,5 +1,5 @@
-<%= turbo_frame_tag "#{dom_id(team_game)}_#{dom_id(game_player)}}" do %>
-  <%= form_with model: [:admin, game, team_game, game_player], data: {controller: "reset-form", action: "turbo:submit-end->reset-form#reset"} do |f| %>
+<%= turbo_frame_tag "#{dom_id(playing_team)}_#{dom_id(game_player)}}" do %>
+  <%= form_with model: [:admin, game, playing_team, game_player], data: {controller: "reset-form", action: "turbo:submit-end->reset-form#reset"} do |f| %>
     <%= render 'shared/errors', object: game_player %>
 
     <div class="mb-3 row">

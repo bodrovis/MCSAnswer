@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_secure_password validations: false
 
   has_many :game_players, dependent: :destroy
-  has_many :team_games, through: :game_players
+  has_many :playing_teams, through: :game_players
 
   validate :password_presence
   validates :password, confirmation: true, allow_blank: true,
@@ -17,6 +17,10 @@ class User < ApplicationRecord
 
   before_save :set_gravatar_hash, if: :email_changed?
   before_create :name_from_email, unless: proc { name.present? }
+
+  def in_game(game)
+    self.game_players.joins(playing_team: :game).where(playing_team: {game: game}).first
+  end
 
   def guest?
     false

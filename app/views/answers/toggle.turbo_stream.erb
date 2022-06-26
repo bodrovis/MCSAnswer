@@ -1,0 +1,2 @@
+<%= turbo_stream.replace "#{dom_id(@question)}_#{dom_id(@team)}", partial: 'answers/answer', locals: {answer: @answer,
+  team: @team, question: @question} %>

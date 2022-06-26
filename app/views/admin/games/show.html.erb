@@ -15,20 +15,20 @@
 </p>
 
 <h2>
-  <%= link_to "Команды", "#team-games-list", data: {'bs-toggle': 'collapse'} %>
+  <%= link_to "Команды", "#playing-teams-list", data: {'bs-toggle': 'collapse'} %>
 </h2>
 
-<%= link_to t('.add_team_game'), new_admin_game_team_game_path(@game), class: 'btn btn-primary',
-  data: { turbo_frame: dom_id(TeamGame.new) } %>
+<%= link_to t('.add_playing_team'), new_admin_game_playing_team_path(@game), class: 'btn btn-primary',
+  data: { turbo_frame: dom_id(PlayingTeam.new) } %>
 
 <div class="my-3">
-  <%= turbo_frame_tag TeamGame.new %>
+  <%= turbo_frame_tag PlayingTeam.new %>
 </div>
 
-<div class="collapse show mt-2" id="team-games-list">
+<div class="collapse show mt-2" id="playing-teams-list">
   <article>
-    <%= turbo_frame_tag "team-games" do %>
-      <%= render @game.team_games.includes(:team, game_players: :user).order(created_at: :asc) %>
+    <%= turbo_frame_tag "playing-teams" do %>
+      <%= render @game.playing_teams.includes(:team, game_players: :user).order(created_at: :asc) %>
     <% end %>
   </article>
 </div>

@@ -3,17 +3,17 @@
 module Admin
   class GamePlayersController < BaseController
     before_action :set_game!
-    before_action :set_team_game!
+    before_action :set_playing_team!
     before_action :set_game_player!, only: %i[edit update destroy]
     before_action :authorize_game_player!
     after_action :verify_authorized
 
     def new
-      @game_player = @team_game.game_players.build
+      @game_player = @playing_team.game_players.build
     end
 
     def create
-      @game_player = @team_game.game_players.build game_player_params
+      @game_player = @playing_team.game_players.build game_player_params
 
       if @game_player.save
         respond_to do |format|
@@ -56,12 +56,12 @@ module Admin
       @game = Game.find params[:game_id]
     end
 
-    def set_team_game!
-      @team_game = @game.team_games.find params[:team_game_id]
+    def set_playing_team!
+      @playing_team = @game.playing_teams.find params[:playing_team_id]
     end
 
     def set_game_player!
-      @game_player = @team_game.game_players.find params[:id]
+      @game_player = @playing_team.game_players.find params[:id]
     end
 
     def authorize_game_player!

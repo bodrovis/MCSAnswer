@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :games do
       resources :questions, only: %i[new create edit update destroy]
 
-      resources :team_games, only: %i[new create destroy] do
+      resources :playing_teams, only: %i[new create destroy] do
         resources :game_players, only: %i[new create edit update destroy]
       end
     end
@@ -30,6 +30,16 @@ Rails.application.routes.draw do
   resources :pages, only: :index
 
   resources :games, only: %i[index show] do
+    resources :playing_teams, only: %i[index]
+
+    resources :answers, only: %i[index create] do
+      member do
+        patch 'toggle'
+      end
+    end
+  end
+
+  resources :game_actions, only: %i[] do
     member do
       patch 'next_question'
       patch 'start_question'
@@ -41,7 +51,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create show edit update index]
 
   resource :session, only: %i[new create destroy]
-
+  
   root 'pages#index'
 end
 # rubocop:enable Metrics/BlockLength

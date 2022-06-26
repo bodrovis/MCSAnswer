@@ -1,3 +1,5 @@
 <section id="current-question">
-  <%= question.body %>
+  <% if question.present? %>
+    <%= question.body %>
+  <% end %>
 </section>

@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import GamesController from "./games_controller"
-application.register("games", GamesController)
-
 import RedirectController from "./redirect_controller";
 application.register("redirect", RedirectController)
 
@@ -18,3 +15,9 @@ application.register("recaptcha-v2", Recaptchav2Controller)
 
 import TimerController from "./timer_controller";
 application.register("timer", TimerController)
+
+import AnswersController from "./answers_controller";
+application.register("answers", AnswersController)
+
+import TeamResultsController from "./team_results_controller";
+application.register("team-results", TeamResultsController)

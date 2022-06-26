@@ -2,7 +2,8 @@
 
 class Game < ApplicationRecord
   has_many :questions, dependent: :destroy
-  has_many :team_games, dependent: :destroy
+  has_many :playing_teams, dependent: :destroy
+  has_many :answers, dependent: :destroy
   belongs_to :host, class_name: 'User'
 
   validates :title, presence: true, length: { minimum: 3, maximum: 150 }

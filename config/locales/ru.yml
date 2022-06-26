@@ -5,7 +5,7 @@ ru:
         user_id: Пользователь
         user: Пользователь
         captain: Капитан
-      team_game:
+      playing_team:
         team_id: Команда
       team:
         title: Название
@@ -98,8 +98,8 @@ ru:
         success: Игрок удалён!
       update:
         success: Игрок обновлён!
-    team_games:
-      team_game:
+    playing_teams:
+      playing_team:
         add_game_player: Добавить игрока
       create:
         success: Команда добавлена!
@@ -121,7 +121,13 @@ ru:
         success: Игра обновлена!
       show:
         add_question: Добавить вопрос
-        add_team_game: Добавить команду
+        add_playing_team: Добавить команду
+  playing_teams:
+    index:
+      title: Команды и составы
+  answers:
+    index:
+      title: Результаты
   games:
     index:
       title: Игры

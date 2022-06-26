@@ -4,6 +4,8 @@ export default class extends Controller {
   static targets = [ "ticker" ]
 
   tickerTargetConnected(_element) {
+    this.dispatch('toggle', { detail: { show: true } });
+
     this.seconds = 60
 
     this.tickerInterval = setInterval(() => {
@@ -18,6 +20,8 @@ export default class extends Controller {
   }
 
   tickerTargetDisconnected(_element) {
+    this.dispatch('toggle', { detail: { show: false } });
+
     clearInterval(this.tickerInterval)
   }
 }

@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
 module Admin
-  class TeamGamesController < BaseController
+  class PlayingTeamsController < BaseController
     before_action :set_game!
-    before_action :set_team_game!, only: %i[destroy]
-    before_action :authorize_team_game!
+    before_action :set_playing_team!, only: %i[destroy]
+    before_action :authorize_playing_team!
     after_action :verify_authorized
 
     def new
-      @team_game = @game.team_games.build
+      @playing_team = @game.playing_teams.build
     end
 
     def create
-      @team_game = @game.team_games.build team_game_params
+      @playing_team = @game.playing_teams.build playing_team_params
 
-      if @team_game.save
+      if @playing_team.save
         respond_to do |format|
           format.turbo_stream do
             flash.now[:success] = t('.success')
@@ -26,7 +26,7 @@ module Admin
     end
 
     def destroy
-      @team_game.destroy
+      @playing_team.destroy
 
       respond_to do |format|
         format.turbo_stream do
@@ -41,16 +41,16 @@ module Admin
       @game = Game.find params[:game_id]
     end
 
-    def set_team_game!
-      @team_game = @game.team_games.find params[:id]
+    def set_playing_team!
+      @playing_team = @game.playing_teams.find params[:id]
     end
 
-    def authorize_team_game!
-      authorize(@team_game || TeamGame)
+    def authorize_playing_team!
+      authorize(@playing_team || PlayingTeam)
     end
 
-    def team_game_params
-      params.require(:team_game).permit(:team_id)
+    def playing_team_params
+      params.require(:playing_team).permit(:team_id)
     end
   end
 end

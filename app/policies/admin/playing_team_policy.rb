@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  class TeamGamePolicy < ApplicationPolicy
+  class PlayingTeamPolicy < ApplicationPolicy
     def create?
       user.admin_role?
     end
