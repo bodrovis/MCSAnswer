@@ -8,14 +8,10 @@ export default class extends Controller {
       this.answerFormTarget.classList.remove('d-none')
     } else {
       this.answerFormTarget.classList.add('d-none')
-      try {
-        await this.doPost(
-          `/games/${this.answerFormTarget.querySelector('#game_id').value}/answers`,
-          new FormData(this.answerFormTarget)
-        )
-      } catch(e) {
-        console.error(e)
-      }
+      await this.doPost(
+        `/games/${this.answerFormTarget.querySelector('#game_id').value}/answers`,
+        new FormData(this.answerFormTarget)
+      )
       
       this.answerFormTarget.reset()
     }
@@ -23,12 +19,19 @@ export default class extends Controller {
 
   async doPost(url, body) {
     const csrfToken = document.getElementsByName("csrf-token")[0].content;
-    await fetch(url, {
-      method: 'POST',
-      body: body,
-      headers: {
-        "X-CSRF-Token": csrfToken
+    try {
+      const resp = await fetch(url, {
+        method: 'POST',
+        body: body,
+        headers: {
+          "X-CSRF-Token": csrfToken
+        }
+      })
+      if(resp.status > 299) {
+        throw new Error(`Can't send answer: HTTP ${resp.status}`)
       }
-    })
+    } catch(e) {
+      console.error(e)
+    }
   }
 }

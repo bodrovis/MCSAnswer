@@ -4,10 +4,7 @@
 <h1 class="mb-4"><%= @game.title %></h1>
 
 <% if @game.finished? %>
-  <p class="lead">Игра завершена!</p>
-
-  <%= link_to 'Результаты', game_answers_path(game_id: @game), class: 'btn btn-info' %>
-  <%= link_to 'Команды и составы', game_playing_teams_path(@game), class: 'btn btn-secondary' %>
+  <%= render 'game_actions/game_finished', game: @game %>
 <% else %>
   <%= turbo_stream_from(@game, :questions) %>
 

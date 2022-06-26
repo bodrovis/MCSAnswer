@@ -6,4 +6,5 @@
   <%= turbo_stream.replace "question_id", hidden_field_tag(:question_id, @next_question.id) %>
 <% else %>
   <%= turbo_stream.remove "current-action" %>
+  <%= turbo_stream.before "question-data", partial: 'game_actions/game_finished', locals: { game: @game } %>
 <% end %>
