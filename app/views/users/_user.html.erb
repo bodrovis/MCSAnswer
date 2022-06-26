@@ -12,15 +12,21 @@
     <%= t(user.role, scope: 'global.user.roles') %>
   </p>
 
-  <p>
-    <strong><%= t 'games_played', scope: scope %></strong>
-    <%= user.games_played %>
-  </p>
+  <h2>Турниры</h2>
 
-  <p>
-    <strong><%= t 'games_won', scope: scope %></strong>
-    <%= user.games_won %>
-  </p>
+  <ul>
+    <% user.playing_teams.each do |team| %>
+      <li>
+        Команда "<%= team.title %>"
+        (турнир "<%= link_to team.game.title, game_path(team.game), data: {turbo_frame: '_top'} %>"),
+        <% if team.game.starts_at.present? %>
+          <%= l team.game.starts_at, format: :longer %>
+        <% end %>
+        <br>
+        Взято <%= team.total_answered %>
+      </li>
+    <% end %>
+  </ul>
 
   <% if policy(user).update? %>
     <%= link_to t('global.button.edit'), edit_user_path(user), class: 'btn btn-secondary' %>
