@@ -6,10 +6,6 @@ export default class extends Controller {
   }
   static targets = [ "answer", "total" ]
 
-  connect() {
-    this.calculateTotal()
-  }
-
   answerTargetConnected(element) {
     this.calculateTotal()
     const actions = element.querySelector('.js-actions')

@@ -30,6 +30,10 @@ Rails.application.routes.draw do
   resources :pages, only: :index
 
   resources :games, only: %i[index show] do
+    member do
+      patch 'recalculate'
+    end
+
     resources :playing_teams, only: %i[index]
 
     resources :answers, only: %i[index create edit update] do

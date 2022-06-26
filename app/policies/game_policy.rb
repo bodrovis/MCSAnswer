@@ -32,4 +32,8 @@ class GamePolicy < ApplicationPolicy
   def manage_questions?
     record.hosted_by?(user) || user.admin_role?
   end
+
+  def recalculate?
+    record.hosted_by?(user) || user.admin_role?
+  end
 end

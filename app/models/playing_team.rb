@@ -8,4 +8,6 @@ class PlayingTeam < ApplicationRecord
   has_many :answers, dependent: :destroy
 
   delegate :title, to: :team
+
+  validates :total_answered, numericality: { only_integer: true, greater_than: -1 }
 end

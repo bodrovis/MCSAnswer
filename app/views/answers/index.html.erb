@@ -6,6 +6,9 @@
 <div class="mb-3">
   <%= link_to 'Игра', game_path(@game), class: 'btn btn-primary' %>
   <%= link_to 'Команды и составы', game_playing_teams_path(@game), class: 'btn btn-secondary' %>
+  <% if policy(@game).recalculate? %>
+    <%= link_to 'Пересчитать итог', recalculate_game_path(@game), class: 'btn btn-secondary', data: {turbo_method: :patch} %>
+  <% end %>
 </div>
 
 <%= turbo_stream_from(@game, :answers) %>
@@ -20,7 +23,7 @@
           <th class="col-2"><%= question.position %></th>
         <% end %>
 
-        <th class="col-1">Итог</th>
+        <th class="col-1">Итог (финальный)</th>
       </tr>
     </thead>
 
@@ -34,7 +37,8 @@
           <% end %>
 
           <td>
-            <strong data-team-results-target="total"></strong>
+            <em data-team-results-target="total"></em>
+            <strong>(<%= team.total_answered %>)</strong>
           </td>
         </tr>
       <% end %>
