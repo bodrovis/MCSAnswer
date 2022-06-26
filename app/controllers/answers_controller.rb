@@ -9,7 +9,7 @@ class AnswersController < ApplicationController
 
   def index
     @questions = @game.questions.includes(answers: :playing_team).order(position: :asc)
-    @playing_teams = @game.playing_teams.joins(:team).order('teams.title ASC')
+    @playing_teams = @game.playing_teams.includes(:team).order(total_answered: :desc, 'teams.title': :asc)
     authorize Answer
   end
 
