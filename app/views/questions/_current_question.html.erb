@@ -1,5 +1,8 @@
 <section id="current-question">
   <% if question.present? %>
-    <%= question.body %>
+    <p class="lead text-center">
+      <small>Вопроc #<%= question.position %></small><br>
+      <strong><%= question.body %></strong>
+    </p>
   <% end %>
 </section>

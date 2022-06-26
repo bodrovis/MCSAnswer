@@ -11,26 +11,6 @@
 <% else %>
   <%= turbo_stream_from(@game, :questions) %>
 
-  <% if @game_player.present? %>
-    <p class="lead">Команда <strong><%= @game_player.playing_team.title %></strong></p>
-
-    <% if @game_player.captain? %>
-      <%= tag.article data: {controller: 'answers', action: 'timer:toggle@window->answers#toggleForm'} do %>
-        <%= form_with url: root_path, class: "#{'d-none' unless @game.current_question.present?}",
-          data: {'answers-target': 'answerForm'} do |f| %>
-          <%= f.hidden_field :game_id, value: @game.id %>
-          <%= f.hidden_field :question_id, value: @game.current_question&.id %>
-
-          <div class="mb-3 row">
-            <div class="col">
-              <%= f.text_area :answer, class: 'form-control', placeholder: 'Ответ...', id: 'team-answer' %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
-
   <% if @game.hosted_by? current_user %>
     <% if @game.current_question.present? %>
       <%= render 'game_actions/finish_question' %>
@@ -38,11 +18,31 @@
       <%= render 'game_actions/next_question' %>
     <% end %>
   <% end %>
+  
+  <% if @game_player.present? %>
+    <p class="lead">Команда <strong><%= @game_player.playing_team.title %></strong></p>
+  <% end %>
 
-  <article data-controller="timer" id="question-data">
+  <article data-controller="timer" id="question-data" class="mb-5">
     <% if @game.current_question.present? %>
       <%= render 'game_actions/timer' %>
       <%= render 'questions/current_question', question: @game.current_question %>
     <% end %>
-  </div>
+  </article>
+
+  <% if @game_player&.captain? %>
+    <%= tag.article data: {controller: 'answers', action: 'timer:toggle@window->answers#toggleForm'} do %>
+      <%= form_with url: root_path, class: "#{'d-none' unless @game.current_question.present?}",
+        data: {'answers-target': 'answerForm'} do |f| %>
+        <%= f.hidden_field :game_id, value: @game.id %>
+        <%= f.hidden_field :question_id, value: @game.current_question&.id %>
+
+        <div class="mb-3 row">
+          <div class="col">
+            <%= f.text_area :answer, class: 'form-control', placeholder: 'Ответ...', id: 'team-answer' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
 <% end %>
