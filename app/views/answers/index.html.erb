@@ -18,14 +18,12 @@
     <thead>
       <tr>
         <th class="col-2">Команда</th>
-        
-        <% @questions.each do |question| %>
-          <th class="col-2"><%= question.position %></th>
-        <% end %>
-
         <th class="col-1">Итог</th>
 
         <th class="col-1">Место</th>
+        <% @questions.each do |question| %>
+          <th class="col-2"><%= question.position %></th>
+        <% end %>
       </tr>
     </thead>
 
@@ -33,17 +31,15 @@
       <% @playing_teams.includes(:game).each do |team| %>
         <tr data-controller="team-results" data-team-results-admin-value="<%= policy(@game).manage_questions? %>">
           <th scope="row"><%= team.title %></th>
-
-          <% @questions.includes(:game).each do |question| %>
-            <%= render 'answer', answer: question.answer_by!(team), team: team, question: question %>
-          <% end %>
-
           <td>
             <strong><%= team.total_answered %></strong>
             <em data-team-results-target="total"></em>
           </td>
-
           <td class="js-place"><strong><%= team.place %></strong></td>
+
+          <% @questions.includes(:game).each do |question| %>
+            <%= render 'answer', answer: question.answer_by!(team), team: team, question: question %>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
