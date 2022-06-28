@@ -63,6 +63,6 @@ class UsersController < ApplicationController
   end
 
   def set_user!
-    @user = User.includes(game_players: { playing_team: :game }).find params[:id]
+    @user = User.find params[:id]
   end
 end

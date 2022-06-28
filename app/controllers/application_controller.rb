@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     flash[:danger] = t 'global.flash.not_authorized'
-    redirect_to(request.referer || root_path)
+    redirect_to(request.referer || root_path, status: :see_other)
   end
 
   def notfound(exception)
@@ -30,14 +30,14 @@ class ApplicationController < ActionController::Base
     return if user_signed_in?
 
     flash[:warning] = t 'global.flash.not_signed_in'
-    redirect_to root_path
+    redirect_to root_path, status: :see_other
   end
 
   def require_no_authentication
     return unless user_signed_in?
 
     flash[:warning] = t 'global.flash.already_signed_in'
-    redirect_to root_path
+    redirect_to root_path, status: :see_other
   end
 
   def sign_in(user)

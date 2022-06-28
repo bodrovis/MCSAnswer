@@ -6,7 +6,7 @@ class GamesController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @games = Game.order(created_at: :desc)
+    @games = Game.includes(:host).order(created_at: :desc)
   end
 
   def show
@@ -14,21 +14,24 @@ class GamesController < ApplicationController
   end
 
   def recalculate
-    @game.playing_teams.find_each do |team|
-      team.update total_answered: team.answers.where(correct: true).count
+    Game.transaction do
+      @game.playing_teams.find_each do |team|
+        team.update total_answered: team.answers.where(correct: true).count
+      end
+
+      @game.playing_teams.order(total_answered: :desc).group_by(&:total_answered)
+           .each.with_index do |(_count, teams), index|
+        teams.each { |team| team.update(place: (index + 1)) }
+      end
     end
-    redirect_to game_answers_path(game_id: @game)
-    # respond_to do |format|
-    #   format.turbo_stream do
-    #     @path = game_answers_path(game_id: @game)
-    #   end
-    # end
+
+    redirect_to game_answers_path(game_id: @game), status: :see_other
   end
 
   private
 
   def set_game!
-    @game = Game.includes(:questions).find(params[:id])
+    @game = Game.find(params[:id])
   end
 
   def authorize_game!

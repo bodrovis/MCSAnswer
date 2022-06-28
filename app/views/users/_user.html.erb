@@ -15,7 +15,7 @@
   <h2>Турниры</h2>
 
   <ul>
-    <% user.playing_teams.each do |team| %>
+    <% user.playing_teams.includes(:game, :team).order('games.created_at DESC').each do |team| %>
       <li>
         Команда "<%= team.title %>"
         (турнир "<%= link_to team.game.title, game_path(team.game), data: {turbo_frame: '_top'} %>"),
@@ -23,7 +23,7 @@
           <%= l team.game.starts_at, format: :longer %>
         <% end %>
         <br>
-        Взято <%= team.total_answered %>
+        Место <%= team.place %><br>Взято <%= team.total_answered %> из <%= team.game.questions.count %>
       </li>
     <% end %>
   </ul>

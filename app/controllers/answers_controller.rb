@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
 class AnswersController < ApplicationController
-  before_action :require_authentication
+  before_action :require_authentication, except: :index
   before_action :set_game!
   before_action :set_question!, only: :create
   before_action :set_answer!, only: %i[edit update]
   after_action :verify_authorized
 
   def index
-    @questions = @game.questions.includes(answers: :playing_team).order(position: :asc)
+    @questions = @game.questions.order(position: :asc)
     @playing_teams = @game.playing_teams.includes(:team).order(total_answered: :desc, 'teams.title': :asc)
     authorize Answer
   end
 
   def create
-    @answer = Answer.new question: @question,
-                         playing_team: current_user.in_game(@game)&.playing_team,
-                         game: @game,
-                         body: params[:answer]
+    @answer = Answer.find_or_initialize_by question: @question,
+                                           playing_team: current_user.in_game(@game)&.playing_team,
+                                           game: @game
 
     authorize @answer
+
+    @answer.body = params[:answer]
 
     @answer.save!
 

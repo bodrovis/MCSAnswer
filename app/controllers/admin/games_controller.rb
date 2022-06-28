@@ -7,7 +7,7 @@ module Admin
     after_action :verify_authorized
 
     def index
-      @games = Game.order created_at: :desc
+      @games = Game.includes(:host).order created_at: :desc
     end
 
     def new
@@ -19,7 +19,7 @@ module Admin
 
       if @game.save
         flash[:success] = t('.success')
-        redirect_to admin_game_path(@game)
+        redirect_to admin_game_path(@game), status: :see_other
       else
         render :new
       end
@@ -32,7 +32,7 @@ module Admin
     def update
       if @game.update game_params
         flash[:success] = t('.success')
-        redirect_to admin_games_path
+        redirect_to admin_games_path, status: :see_other
       else
         render :edit
       end

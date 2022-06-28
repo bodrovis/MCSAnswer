@@ -20,6 +20,7 @@ export default class extends Controller {
   }
 
   calculateTotal() {
-    this.totalTarget.innerText = this.element.querySelectorAll('.js-correct').length;
+    if(this.element.querySelector('.js-place').innerText.length > 0) { return }
+    this.totalTarget.innerText = `(${this.element.querySelectorAll('.js-correct').length})`;
   }
 }

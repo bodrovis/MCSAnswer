@@ -47,7 +47,7 @@
 <div class="collapse show mt-2" id="questions-list">
   <article>
     <%= turbo_frame_tag "questions" do %>
-      <%= render @game.questions.order(position: :asc) %>
+      <%= render @game.questions.includes(:game).order(position: :asc) %>
     <% end %>
   </article>
 </div>

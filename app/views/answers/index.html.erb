@@ -17,13 +17,15 @@
   <table class="table table-striped table-hover table-bordered">
     <thead>
       <tr>
-        <th class="col-2">#</th>
+        <th class="col-2">Команда</th>
         
         <% @questions.each do |question| %>
           <th class="col-2"><%= question.position %></th>
         <% end %>
 
-        <th class="col-1">Итог (финальный)</th>
+        <th class="col-1">Итог</th>
+
+        <th class="col-1">Место</th>
       </tr>
     </thead>
 
@@ -33,13 +35,15 @@
           <th scope="row"><%= team.title %></th>
 
           <% @questions.each do |question| %>
-            <%= render 'answer', answer: question.answer_by(team), team: team, question: question %>
+            <%= render 'answer', answer: question.answer_by!(team), team: team, question: question %>
           <% end %>
 
           <td>
+            <strong><%= team.total_answered %></strong>
             <em data-team-results-target="total"></em>
-            <strong>(<%= team.total_answered %>)</strong>
           </td>
+
+          <td class="js-place"><strong><%= team.place %></strong></td>
         </tr>
       <% end %>
     </tbody>
