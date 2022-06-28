@@ -28,7 +28,7 @@
 <div class="collapse show mt-2" id="playing-teams-list">
   <article>
     <%= turbo_frame_tag "playing-teams" do %>
-      <%= render @game.playing_teams.includes(:team, game_players: :user).order(created_at: :asc) %>
+      <%= render @game.playing_teams.includes(:game, :team, game_players: :user).order(created_at: :asc) %>
     <% end %>
   </article>
 </div>

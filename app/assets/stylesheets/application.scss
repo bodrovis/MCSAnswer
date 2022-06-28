@@ -25,3 +25,9 @@
 // Utilities
 @import "bootstrap/scss/utilities/api";
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+table.team-results {
+  td, th {
+    min-width: 150px;
+  }
+}
