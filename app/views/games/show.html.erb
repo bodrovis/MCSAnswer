@@ -22,7 +22,7 @@
 
   <article data-controller="timer" id="question-data" class="mb-5">
     <% if @game.current_question.present? %>
-      <%= render 'game_actions/timer' %>
+      <%= render 'game_actions/timer', game: @game %>
       <%= render 'questions/current_question', question: @game.current_question %>
     <% end %>
   </article>

@@ -6,4 +6,4 @@
 # end
 
 PlayingTeam.all.find_each { |t| t.update place: nil, total_answered: 0 }
-Answer.all.find_each {|a| a.update correct: false}
+Answer.all.find_each { |a| a.update correct: false }

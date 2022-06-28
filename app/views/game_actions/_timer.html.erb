@@ -1,1 +1,3 @@
-<div id="current-ticker" data-timer-target="ticker" class="text-danger"></div>
+<div id="current-ticker" data-timer-target="ticker"
+  data-starts="<%= Time.current.to_i %>"
+  data-ends="<%= ((@game.question_asked_at || 0) + 60.seconds).to_i %>" class="text-danger"></div>

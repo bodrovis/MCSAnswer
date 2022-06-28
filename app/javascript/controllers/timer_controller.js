@@ -4,9 +4,14 @@ export default class extends Controller {
   static targets = [ "ticker" ]
 
   tickerTargetConnected(_element) {
-    this.dispatch('toggle', { detail: { show: true } });
+    this.dispatch('toggle', { detail: { show: true } })
 
-    this.seconds = 60
+    const starts = this.tickerTarget.dataset.starts
+    const ends = this.tickerTarget.dataset.ends
+
+    this.seconds = ends - starts
+
+    if(this.seconds < 1) { return }
 
     this.tickerInterval = setInterval(() => {
       this.seconds--;

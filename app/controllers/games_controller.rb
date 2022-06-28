@@ -21,7 +21,8 @@ class GamesController < ApplicationController
         teams.each { |team| team.place = (index + 1) }
       end
 
-      PlayingTeam.import all_teams, on_duplicate_key_update: { conflict_target: [:id], columns: %i[total_answered place] }
+      PlayingTeam.import all_teams,
+                         on_duplicate_key_update: { conflict_target: [:id], columns: %i[total_answered place] }
     end
 
     redirect_to game_answers_path(game_id: @game), status: :see_other

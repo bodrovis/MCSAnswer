@@ -36,7 +36,7 @@ class AnswersController < ApplicationController
     authorize @answer
     Answer.transaction do
       # rubocop:disable Rails/SkipsModelValidations
-      @answer.toggle! :correct 
+      @answer.toggle! :correct
       @answer.correct? ? @team.increment!(:total_answered) : @team.decrement!(:total_answered)
       # rubocop:enable Rails/SkipsModelValidations
     end
