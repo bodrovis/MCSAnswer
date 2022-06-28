@@ -15,7 +15,7 @@ class GamesController < ApplicationController
 
   def recalculate
     @game.playing_teams.find_each do |team|
-      team.update total_answered: (team.answers.where(correct: true).count)
+      team.update total_answered: team.answers.where(correct: true).count
     end
     redirect_to game_answers_path(game_id: @game)
     # respond_to do |format|

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     @user.validate
 
-    check = (verify_recaptcha action: 'signup', minimum_score: 0.7,
+    check = (verify_recaptcha action: 'signup', minimum_score: 0.6,
                               secret_key: ENV.fetch('RECAPTCHA_SECRET_V3', nil)) ||
             (verify_recaptcha model: @user, secret_key: ENV.fetch('RECAPTCHA_SECRET', nil))
 
@@ -63,6 +63,6 @@ class UsersController < ApplicationController
   end
 
   def set_user!
-    @user = User.includes(game_players: {playing_team: :game}).find params[:id]
+    @user = User.includes(game_players: { playing_team: :game }).find params[:id]
   end
 end
