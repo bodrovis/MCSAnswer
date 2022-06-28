@@ -15,14 +15,17 @@ class GamesController < ApplicationController
 
   def recalculate
     Game.transaction do
-      @game.playing_teams.find_each do |team|
-        team.update total_answered: team.answers.where(correct: true).count
+      all_teams = @game.playing_teams.to_a
+      all_teams.each do |team|
+        team.total_answered = team.answers.where(correct: true).count
       end
 
-      @game.playing_teams.order(total_answered: :desc).group_by(&:total_answered)
+      all_teams.sort_by(&:total_answered).reverse.group_by(&:total_answered)
            .each.with_index do |(_count, teams), index|
-        teams.each { |team| team.update(place: (index + 1)) }
+        teams.each { |team| team.place = (index + 1) }
       end
+
+      PlayingTeam.import teams, on_duplicate_key_update: { conflict_target: [:id], columns: %i[total_answered place] }
     end
 
     redirect_to game_answers_path(game_id: @game), status: :see_other

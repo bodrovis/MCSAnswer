@@ -30,11 +30,11 @@
     </thead>
 
     <tbody>
-      <% @playing_teams.each do |team| %>
+      <% @playing_teams.includes(:game).each do |team| %>
         <tr data-controller="team-results" data-team-results-admin-value="<%= policy(@game).manage_questions? %>">
           <th scope="row"><%= team.title %></th>
 
-          <% @questions.each do |question| %>
+          <% @questions.includes(:game).each do |question| %>
             <%= render 'answer', answer: question.answer_by!(team), team: team, question: question %>
           <% end %>
 

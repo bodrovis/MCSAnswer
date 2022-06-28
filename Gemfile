@@ -48,6 +48,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'pundit', '~> 2.1'
 
+gem 'activerecord-import', '~> 1.4'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-brotli', '~> 1.2'
 gem 'recaptcha', '~> 5.10'
