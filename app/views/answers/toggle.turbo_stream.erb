@@ -1,2 +1,5 @@
 <%= turbo_stream.replace "#{dom_id(@question)}_#{dom_id(@team)}", partial: 'answers/answer', locals: {answer: @answer,
   team: @team, question: @question} %>
+<%= turbo_stream.replace "total-answered-#{dom_id(@team)}" do %>
+  <strong id="total-answered-<%= dom_id(@team) %>"><%= @team.total_answered %></strong>
+<% end %>

@@ -32,8 +32,7 @@
         <tr data-controller="team-results" data-team-results-admin-value="<%= policy(@game).manage_questions? %>">
           <th scope="row"><%= team.title %></th>
           <td>
-            <strong><%= team.total_answered %></strong>
-            <em data-team-results-target="total"></em>
+            <strong id="total-answered-<%= dom_id(team) %>"><%= team.total_answered %></strong>
           </td>
           <td class="js-place"><strong><%= team.place %></strong></td>
 
