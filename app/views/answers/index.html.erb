@@ -17,12 +17,12 @@
   <table class="table table-striped table-hover table-bordered team-results">
     <thead>
       <tr>
-        <th class="col-2">Команда</th>
-        <th class="col-1">Итог</th>
+        <th>Команда</th>
+        <th>Итог</th>
 
-        <th class="col-1">Место</th>
+        <th>Место</th>
         <% @questions.each do |question| %>
-          <th class="col-2"><%= question.position %></th>
+          <th><%= question.position %></th>
         <% end %>
       </tr>
     </thead>
