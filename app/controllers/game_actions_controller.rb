@@ -45,7 +45,7 @@ class GameActionsController < ApplicationController
   end
 
   def start_question
-    @game.update question_asked_at: Time.current
+    @game.update question_ends_at: 60.seconds.from_now
 
     broadcast [@game, 'questions'], 'game_actions/start'
 
