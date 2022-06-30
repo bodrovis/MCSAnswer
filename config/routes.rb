@@ -2,18 +2,6 @@
 
 # rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
-  namespace :api do
-    resources :games, only: %i[] do
-      member do
-        post 'suggest_answer'
-        post 'correct_answer'
-        post 'incorrect_answer'
-        post 'finish_question'
-        post 'alarm'
-      end
-    end
-  end
-
   namespace :admin do
     resources :teams
     resources :users, only: %i[index destroy]
