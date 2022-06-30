@@ -6,7 +6,7 @@ class GamesController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @games = Game.includes(:host).order(created_at: :desc)
+    @games = Game.includes(:host).where(published: true).order(created_at: :desc)
   end
 
   def show

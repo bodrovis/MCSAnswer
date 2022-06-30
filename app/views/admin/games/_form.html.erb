@@ -43,6 +43,14 @@
 
   <div class="mb-3">
     <div class="form-check">
+      <%= f.label :published, class: 'form-check-label' %>
+
+      <%= f.check_box :published, class: 'form-check-input' %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="form-check">
       <%= f.label :finished, class: 'form-check-label' %>
 
       <%= f.check_box :finished, class: 'form-check-input' %>

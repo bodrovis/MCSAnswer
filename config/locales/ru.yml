@@ -21,6 +21,7 @@ ru:
         starts_at: Дата и время начала
         host_id: Ведущий
         finished: Завершена
+        published: Опубликована
       user:
         email: E-mail
         name: Имя

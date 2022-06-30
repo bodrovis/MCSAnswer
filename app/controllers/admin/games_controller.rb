@@ -53,7 +53,7 @@ module Admin
     end
 
     def game_params
-      params.require(:game).permit(:title, :description, :starts_at, :host_id, :finished)
+      params.require(:game).permit(:title, :description, :starts_at, :host_id, :finished, :published)
     end
 
     def authorize_game!

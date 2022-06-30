@@ -10,22 +10,26 @@ class GamePolicy < ApplicationPolicy
   end
 
   def next_question?
-    record.hosted_by?(user) &&
+    record.published? &&
+      record.hosted_by?(user) &&
       !record.finished?
   end
 
   def start_question?
-    record.hosted_by?(user) &&
+    record.published? &&
+      record.hosted_by?(user) &&
       !record.finished?
   end
 
   def finish_question?
-    record.hosted_by?(user) &&
+    record.published? &&
+      record.hosted_by?(user) &&
       !record.finished?
   end
 
   def answer_question?
-    record.hosted_by?(user) &&
+    record.published? &&
+      record.hosted_by?(user) &&
       !record.finished?
   end
 
@@ -34,6 +38,7 @@ class GamePolicy < ApplicationPolicy
   end
 
   def recalculate?
-    record.hosted_by?(user) || user.admin_role?
+    record.published? &&
+      record.hosted_by?(user) || user.admin_role?
   end
 end
