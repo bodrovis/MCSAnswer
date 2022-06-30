@@ -2,7 +2,7 @@
   <% if question.present? %>
     <p class="lead text-center">
       <small>Вопроc #<%= question.position %></small><br>
-      <strong><%= question.body %></strong>
+      <strong><%= question.body.html_safe %></strong>
     </p>
   <% end %>
 </section>
