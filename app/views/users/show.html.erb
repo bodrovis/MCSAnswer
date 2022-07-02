@@ -1,4 +1,4 @@
 <% provide :page_title, @user.name %>
 <% currently_at t('menu.profile') %>
 
-<%= render 'user', user: @user %>
+<%= render 'user', user: @user, pagy: @pagy, playing_teams: @playing_teams %>

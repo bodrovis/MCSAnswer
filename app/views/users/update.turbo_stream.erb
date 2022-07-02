@@ -1,2 +1,2 @@
-<%= turbo_stream.replace @user, render(@user) %>
+<%= turbo_stream.replace @user, render('users/user', user: @user, pagy: @pagy, playing_teams: @playing_teams) %>
 <%= prepend_flash %>

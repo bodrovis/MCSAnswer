@@ -110,7 +110,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.16.1)
-    msgpack (1.5.2)
+    msgpack (1.5.3)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -128,6 +128,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.6-x64-mingw-ucrt)
       racc (~> 1.4)
+    pagy (5.10.1)
+      activesupport
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
@@ -142,7 +144,7 @@ GEM
     pundit (2.2.0)
       activesupport (>= 3.0.0)
     racc (1.6.0)
-    rack (2.2.3.1)
+    rack (2.2.4)
     rack-attack (6.6.1)
       rack (>= 1.0, < 3)
     rack-brotli (1.2.0)
@@ -183,7 +185,7 @@ GEM
     rake (13.0.6)
     recaptcha (5.10.0)
       json
-    redis (4.7.0)
+    redis (4.7.1)
     regexp_parser (2.5.0)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -247,6 +249,7 @@ DEPENDENCIES
   debug
   dotenv-rails (~> 2.7)
   jsbundling-rails
+  pagy (~> 5.10)
   pg (~> 1.0)
   propshaft
   puma (~> 5.0)
@@ -270,4 +273,4 @@ RUBY VERSION
    ruby 3.1.1p18
 
 BUNDLED WITH
-   2.3.16
+   2.3.17

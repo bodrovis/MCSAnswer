@@ -45,6 +45,7 @@ ru:
     users_admin: Юзеры (админ)
     teams_admin: Команды (админ)
     profile: Профиль
+    teams: Команды
   global:
     errors:
       invalid_format: имеет неверный формат
@@ -126,6 +127,9 @@ ru:
   playing_teams:
     index:
       title: Команды и составы
+  teams:
+    index:
+      title: Команды
   answers:
     index:
       title: Результаты

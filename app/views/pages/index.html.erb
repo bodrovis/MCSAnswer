@@ -1,6 +1,12 @@
 <% provide :page_title, t('.title') %>
 <% currently_at t('menu.home') %>
 
-<h1 class="h1">MCS Answer</h1>
+<article class="py-5 text-center">
+  <h1 class="h1">MCS Answer</h1>
 
-<%= link_to 'Игры', games_path, class: 'btn btn-primary btn-lg' %>
+  <p class="lead">
+    Место, где сходятся лучшие команды.
+  </p>
+
+  <%= link_to 'Игры', games_path, class: 'btn btn-primary btn-lg' %>
+</article>

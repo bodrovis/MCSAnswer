@@ -1,20 +1,17 @@
 <h2>
   <%= link_to game.title, game_path(game), data: {turbo_frame: '_top'} %>
-</h2>
-
-<% if game.starts_at.present? %>
-  (<%= l game.starts_at, format: :longer %>)
+  <% if game.starts_at.present? %>
+    <small><%= l game.starts_at, format: :longer %></small>
 <% end %>
-
-<br>
-
-<p>Ведущий: <%= game.host.name %></p>
+</h2>
 
 <p>
   <small>
     <%= game.description %>
   </small>
 </p>
+
+<p>Ведущий: <%= link_to game.host.name, user_path(game.host) %></p>
 
 <%= link_to 'Результаты', game_answers_path(game_id: game), class: 'btn btn-info' %>
 <%= link_to 'Команды и составы', game_playing_teams_path(game), class: 'btn btn-secondary' %>

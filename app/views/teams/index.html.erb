@@ -1,0 +1,12 @@
+<% provide :page_title, t('.title') %>
+<% currently_at t('menu.teams') %>
+
+<h1 class="mb-4"><%= t('.title') %></h1>
+
+<%= turbo_frame_tag 'teams' do %>
+  <article class="mt-4">
+    <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+
+    <%= render @teams %>
+  </article>
+<% end %>

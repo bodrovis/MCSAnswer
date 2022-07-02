@@ -38,7 +38,7 @@ class GamePolicy < ApplicationPolicy
   end
 
   def recalculate?
-    record.published? &&
-      record.hosted_by?(user) || user.admin_role?
+    (record.published? &&
+      record.hosted_by?(user)) || user.admin_role?
   end
 end

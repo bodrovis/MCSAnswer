@@ -8,25 +8,32 @@
   <% scope = 'activerecord.attributes.user' %>
 
   <p>
+    <strong>ID</strong>
+    <%= user.id %>
+    <br>
     <strong><%= t 'role', scope: scope %></strong>
     <%= t(user.role, scope: 'global.user.roles') %>
   </p>
 
   <h2>Турниры</h2>
 
-  <ul>
-    <% user.playing_teams.includes(:game, :team).order('games.created_at DESC').each do |team| %>
-      <li>
-        Команда "<%= team.title %>"
-        (турнир "<%= link_to team.game.title, game_path(team.game), data: {turbo_frame: '_top'} %>"),
-        <% if team.game.starts_at.present? %>
-          <%= l team.game.starts_at, format: :longer %>
-        <% end %>
-        <br>
-        Место <%= team.place %><br>Взято <%= team.total_answered %> из <%= team.game.questions.count %>
-      </li>
-    <% end %>
-  </ul>
+  <%= turbo_frame_tag 'tournaments' do %>
+    <%== pagy_bootstrap_nav(pagy) if pagy.pages > 1 %>
+
+    <ul>
+      <% playing_teams.each do |team| %>
+        <li>
+          Команда "<%= link_to team.title, team_path(team.team), data: {turbo_frame: '_top'} %>"
+          (турнир "<%= link_to team.game.title, game_path(team.game), data: {turbo_frame: '_top'} %>"),
+          <% if team.game.starts_at.present? %>
+            <%= l team.game.starts_at, format: :longer %>
+          <% end %>
+          <br>
+          Место <%= team.place %><br>Взято <%= team.total_answered %> из <%= team.game.questions.count %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 
   <% if policy(user).update? %>
     <%= link_to t('global.button.edit'), edit_user_path(user), class: 'btn btn-secondary' %>

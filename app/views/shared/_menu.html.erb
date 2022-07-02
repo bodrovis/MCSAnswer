@@ -7,22 +7,35 @@
             class: 'nav-link px-2', current_page: current_page %></li>
           <li><%= nav_tab t('menu.games'), games_path,
             class: 'nav-link px-2', current_page: current_page %></li>
-
-          <% if policy([:admin, :game]).index? %>
-            <li><%= nav_tab t('menu.games_admin'), admin_games_path,
-              class: 'nav-link px-2', current_page: current_page %></li>
-          <% end %>
-
-          <% if policy([:admin, :user]).index? %>
-            <li><%= nav_tab t('menu.users_admin'), admin_users_path,
-              class: 'nav-link px-2', current_page: current_page %></li>
-          <% end %>
-
-          <% if policy([:admin, :team]).index? %>
-            <li><%= nav_tab t('menu.teams_admin'), admin_teams_path,
-              class: 'nav-link px-2', current_page: current_page %></li>
-          <% end %>
+          <li><%= nav_tab t('menu.teams'), teams_path,
+            class: 'nav-link px-2', current_page: current_page %></li>
         </ul>
+
+        <% if user_signed_in? && current_user.admin_role? %>
+          <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+            <li class="dropdown">
+              <%= link_to '#',
+                class: 'nav-link px-2 dropdown-toggle text-white',
+                data: {"bs-toggle": 'dropdown'} do %>
+                Админ
+              <% end %>
+              
+              <ul class="dropdown-menu">
+                <% if policy([:admin, :game]).index? %>
+                  <li><%= link_to t('menu.games_admin'), admin_games_path, class: 'dropdown-item' %></li>
+                <% end %>
+
+                <% if policy([:admin, :user]).index? %>
+                  <li><%= link_to t('menu.users_admin'), admin_users_path, class: 'dropdown-item' %></li>
+                <% end %>
+
+                <% if policy([:admin, :team]).index? %>
+                  <li><%= link_to t('menu.teams_admin'), admin_teams_path, class: 'dropdown-item' %></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+        <% end %>
 
         <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
           <% if user_signed_in? %>

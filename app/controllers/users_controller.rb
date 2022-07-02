@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :require_no_authentication, only: %i[new create]
   before_action :require_authentication, only: %i[edit update]
   before_action :set_user!, only: %i[edit update show]
+  before_action :paginate_tournaments, only: %i[show update]
   before_action :authorize_user!
   after_action :verify_authorized
 
@@ -64,5 +65,9 @@ class UsersController < ApplicationController
 
   def set_user!
     @user = User.find params[:id]
+  end
+
+  def paginate_tournaments
+    @pagy, @playing_teams = pagy @user.playing_teams.includes(:game, :team).order('games.created_at DESC')
   end
 end

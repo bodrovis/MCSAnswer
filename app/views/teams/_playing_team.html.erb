@@ -1,0 +1,32 @@
+<tr>
+  <td>
+    <%= link_to playing_team.game.title, game_path(playing_team.game), data: {turbo_frame: '_top'} %>
+  </td>
+
+  <td>
+    <% if playing_team.game.starts_at.present? %>
+      <%= l playing_team.game.starts_at, format: :long %>
+    <% end %>
+  </td>
+
+  <td>
+    <%= playing_team.total_answered %> / <%= playing_team.game.questions.count %>
+  </td>
+
+  <td>
+    <%= playing_team.place %>
+  </td>
+
+  <td>
+    <ul class="list-unstyled">
+      <% playing_team.game_players.each do |game_player| %>
+        <li>
+          <%= link_to game_player.name, user_path(game_player.user), data: {turbo_frame: '_top'} %>
+          <% if game_player.captain? %>
+            <span class="text-warning"><strong>К</strong></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </td>
+</tr>
