@@ -27,9 +27,9 @@
       </tr>
     </thead>
 
-    <tbody>
+    <tbody data-controller="team-results" data-team-results-admin-value="<%= policy(@game).manage_questions? %>">
       <% @playing_teams.includes(:game).each do |team| %>
-        <tr data-controller="team-results" data-team-results-admin-value="<%= policy(@game).manage_questions? %>">
+        <tr>
           <th scope="row"><%= link_to team.title, team_path(team.team) %></th>
           <td>
             <strong id="total-answered-<%= dom_id(team) %>"><%= team.total_answered %></strong>
