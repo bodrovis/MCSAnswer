@@ -26,6 +26,10 @@ class AnswersController < ApplicationController
 
     @team = @answer.playing_team
     broadcast [@game, :answers], 'answers/toggle'
+
+    respond_to do |format|
+      format.turbo_stream { head(:ok) }
+    end
   end
 
   def toggle

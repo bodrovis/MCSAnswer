@@ -5,5 +5,5 @@
 #               password_confirmation: 'P@$$w0rdS'
 # end
 
-PlayingTeam.all.find_each { |t| t.update place: nil, total_answered: 0 }
-Answer.all.find_each { |a| a.update correct: false }
+# PlayingTeam.all.find_each { |t| t.update place: nil, total_answered: 0 }
+# Answer.all.find_each { |a| a.update correct: false }
