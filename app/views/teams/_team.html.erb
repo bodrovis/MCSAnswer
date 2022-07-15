@@ -1,2 +1,24 @@
-<%= link_to team.title, team_path(team), data: {'turbo-frame': '_top'} %>
-<hr>
+<tr>
+  <td class="col-5">
+    <%= link_to team.title, team_path(team), data: {'turbo-frame': '_top'} %>
+  </div>
+  <td class="col-7">
+    <% team.playing_teams.includes(:game).order('games.starts_at DESC').limit(5).each do |playing_team| %>
+      <span class="badge bg-success">
+        <%= playing_team.place %>
+      </span>
+
+      <span class="badge bg-info">
+        <%= playing_team.total_answered %> / <%= playing_team.game.questions_count %>
+      </span>
+
+      <%= link_to playing_team.game.title, game_path(playing_team.game), data: {turbo_frame: '_top'} %>
+      
+      <% if playing_team.game.starts_at.present? %>
+        <%= l playing_team.game.starts_at, format: :long %>
+      <% end %>
+
+      <br>
+    <% end %>
+  </div>
+</tr>

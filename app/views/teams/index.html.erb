@@ -4,9 +4,17 @@
 <h1 class="mb-4"><%= t('.title') %></h1>
 
 <%= turbo_frame_tag 'teams' do %>
-  <article class="mt-4">
-    <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
 
-    <%= render @teams %>
+  <table class="mt-4 table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Команда</th>
+        <th>Последние 5 игр (место, взято вопросов, турнир)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @teams %>
+    </tbody>
   </article>
 <% end %>
