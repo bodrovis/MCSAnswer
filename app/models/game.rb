@@ -30,7 +30,7 @@ class Game < ApplicationRecord
   end
 
   def build_next_question
-    questions.build position: (questions_count + 1)
+    questions.build position: (questions_count.to_i + 1)
   end
 
   def hosted_by?(user)
