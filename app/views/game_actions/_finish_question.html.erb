@@ -1,4 +1,4 @@
 <div id="current-action">
-  <%= link_to 'Закончить вопрос', finish_question_game_action_path(@game), class: 'btn btn-warning',
+  <%= link_to 'Закончить вопрос', finish_question_game_action_path(game), class: 'btn btn-warning',
     data: {turbo_method: :patch, turbo_confirm: t('global.dialog.sure')} %>
 </div>

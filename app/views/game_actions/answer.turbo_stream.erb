@@ -1,2 +1,2 @@
-<%= turbo_stream.append "question-data", partial: 'questions/answer', locals: { question: @current_question } %>
-<%= turbo_stream.replace "current-action", partial: 'game_actions/next_question' %>
+<%= turbo_stream.append "question-data", partial: 'questions/answer', locals: { question: current_question } %>
+<%= turbo_stream.replace "current-action", partial: 'game_actions/next_question', locals: { game: game } %>

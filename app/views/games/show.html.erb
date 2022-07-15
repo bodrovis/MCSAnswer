@@ -10,9 +10,9 @@
 
   <% if @game.hosted_by? current_user %>
     <% if @game.current_question.present? %>
-      <%= render 'game_actions/finish_question' %>
+      <%= render 'game_actions/finish_question', game: @game %>
     <% else %>
-      <%= render 'game_actions/next_question' %>
+      <%= render 'game_actions/next_question', game: @game %>
     <% end %>
   <% end %>
   
@@ -28,7 +28,7 @@
   </article>
 
   <% if @game_player&.captain? %>
-    <%= tag.article data: {controller: 'answers', action: 'timer:toggle@window->answers#toggleForm'} do %>
+    <%= tag.article id: 'answer-wrapper', data: {controller: 'answers'} do %>
       <%= form_with url: root_path, class: "#{'d-none' unless @game.current_question.present?}",
         data: {'answers-target': 'answerForm'} do |f| %>
         <%= f.hidden_field :game_id, value: @game.id %>

@@ -9,7 +9,8 @@ class GameActionsController < ApplicationController
     @current_question = @game.current_question
     @current_question.update answered: true
 
-    broadcast [@game, 'questions'], 'game_actions/answer'
+    broadcast [@game, 'questions'], 'game_actions/answer',
+              locals: { current_question: @current_question, game: @game }
 
     respond_to do |format|
       format.turbo_stream { head(:ok) }
@@ -17,7 +18,8 @@ class GameActionsController < ApplicationController
   end
 
   def finish_question
-    broadcast [@game, 'questions'], 'game_actions/finish'
+    broadcast [@game, 'questions'], 'game_actions/finish',
+              locals: { game: @game }
 
     respond_to do |format|
       format.turbo_stream { head(:ok) }
@@ -37,7 +39,8 @@ class GameActionsController < ApplicationController
       end
     end
 
-    broadcast [@game, 'questions'], 'game_actions/next'
+    broadcast [@game, 'questions'], 'game_actions/next',
+              locals: { next_question: @next_question, game: @game }
 
     respond_to do |format|
       format.turbo_stream { head(:ok) }
@@ -47,7 +50,8 @@ class GameActionsController < ApplicationController
   def start_question
     @game.update question_ends_at: 60.seconds.from_now
 
-    broadcast [@game, 'questions'], 'game_actions/start'
+    broadcast [@game, 'questions'], 'game_actions/start',
+              locals: { game: @game }
 
     respond_to do |format|
       format.turbo_stream { head(:ok) }

@@ -3,12 +3,14 @@
   style: '--bs-bg-opacity: .2', data: {'team-results-target': 'answer'} do %>
   <% if answer.present? %>
     <%= turbo_frame_tag answer do %>
-      <%= tag.abbr (answer.body.present? ? answer.body : tag.em("Нет ответа")), title: l(answer.created_at) %>
-      <div class="d-none js-actions">
-        <%= link_to (answer.correct? ? 'Нет' : 'Да'), toggle_game_answer_path(answer.game, answer),
-          class: 'btn btn-sm btn-secondary', data: {turbo_method: :patch} %>
-        <%= link_to 'Р', edit_game_answer_path(answer.game, answer), class: 'btn btn-sm btn-warning' %>
-      </div>
+      <% unless answer.new_record? %>
+        <%= tag.abbr (answer.body.present? ? answer.body : tag.em("Нет ответа")), title: l(answer.created_at) %>
+        <div class="d-none js-actions">
+          <%= link_to (answer.correct? ? 'Нет' : 'Да'), toggle_game_answer_path(answer.game, answer),
+            class: 'btn btn-sm btn-secondary', data: {turbo_method: :patch} %>
+          <%= link_to 'Р', edit_game_answer_path(answer.game, answer), class: 'btn btn-sm btn-warning' %>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

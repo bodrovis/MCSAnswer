@@ -1,10 +1,11 @@
 <%= turbo_stream.remove 'answer' %>
 <%= turbo_stream.remove 'current-question' %>
-<% if @next_question.present? %>
-  <%= turbo_stream.append "question-data", partial: 'questions/current_question', locals: { question: @next_question } %>
-  <%= turbo_stream.replace "current-action", partial: 'game_actions/start_question' %>
-  <%= turbo_stream.replace "question_id", hidden_field_tag(:question_id, @next_question.id) %>
+<%= turbo_stream.remove 'dosend' %>
+<% if next_question.present? %>
+  <%= turbo_stream.append "question-data", partial: 'questions/current_question', locals: { question: next_question } %>
+  <%= turbo_stream.replace "current-action", partial: 'game_actions/start_question', locals: { game: game } %>
+  <%= turbo_stream.replace "question_id", hidden_field_tag(:question_id, next_question.id) %>
 <% else %>
   <%= turbo_stream.remove "current-action" %>
-  <%= turbo_stream.before "question-data", partial: 'game_actions/game_finished', locals: { game: @game } %>
+  <%= turbo_stream.before "question-data", partial: 'game_actions/game_finished', locals: { game: game } %>
 <% end %>

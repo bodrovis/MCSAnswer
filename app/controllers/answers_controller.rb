@@ -5,7 +5,7 @@ class AnswersController < ApplicationController
   before_action :set_game!
   before_action :set_question!, only: :create
   before_action :set_answer!, only: %i[edit update]
-  after_action :verify_authorized
+  after_action :verify_authorized, except: :create
 
   def index
     @questions = @game.questions.order(position: :asc)
@@ -15,7 +15,7 @@ class AnswersController < ApplicationController
 
   def create
     ProcessAnswerJob.perform_later @question, @game, params[:answer], current_user
-    
+
     respond_to do |format|
       format.turbo_stream { head(:ok) }
     end
@@ -24,9 +24,9 @@ class AnswersController < ApplicationController
   def toggle
     @answer = @game.answers.find params[:id]
     @team = @answer.playing_team
-    @question = @answer.question
 
     authorize @answer
+
     Answer.transaction do
       # rubocop:disable Rails/SkipsModelValidations
       @answer.toggle! :correct
@@ -34,7 +34,12 @@ class AnswersController < ApplicationController
       # rubocop:enable Rails/SkipsModelValidations
     end
 
-    broadcast [@game, :answers], 'answers/toggle'
+    broadcast [@game, :answers], 'answers/toggle', locals: {
+      game: @game,
+      answer: @answer,
+      team: @team,
+      question: @answer.question
+    }
 
     respond_to do |format|
       format.turbo_stream { head(:ok) }
@@ -49,10 +54,12 @@ class AnswersController < ApplicationController
     authorize @answer
 
     if @answer.update answer_params
-      @team = @answer.playing_team
-      @question = @answer.question
-
-      broadcast [@game, :answers], 'answers/toggle'
+      broadcast [@game, :answers], 'answers/toggle', locals: {
+        game: @game,
+        answer: @answer,
+        team: @answer.playing_team,
+        question: @answer.question
+      }
 
       respond_to do |format|
         format.turbo_stream { head(:ok) }

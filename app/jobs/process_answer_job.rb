@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProcessAnswerJob < ApplicationJob
   queue_as :default
 
@@ -8,17 +10,17 @@ class ProcessAnswerJob < ApplicationJob
                                 body: answer_text
 
     return unless Pundit.policy(user, answer).create?
-    
+
     return unless answer.save
 
     Turbo::StreamsChannel.broadcast_render_to(
       [game, :answers],
       template: 'answers/toggle',
       locals: {
-        :question => question,
-        :game => game,
-        :team => team,
-        :answer => answer
+        question:,
+        game:,
+        team:,
+        answer:
       }
     )
   end

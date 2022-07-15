@@ -1,2 +1,4 @@
 <%= turbo_stream.remove 'current-ticker' %>
-<%= turbo_stream.replace "current-action", partial: 'game_actions/show_answer' %>
+<%= turbo_stream.replace "current-action", partial: 'game_actions/show_answer', locals: { game: game } %>
+<%= turbo_stream.prepend 'answer-wrapper', '<div data-answers-target="dosend" id="dosend"></div>' %>
+<%= turbo_stream.remove 'doshow' %>

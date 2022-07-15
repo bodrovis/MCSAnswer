@@ -1,2 +1,3 @@
-<%= turbo_stream.prepend "question-data", partial: 'game_actions/timer', locals: {game: @game} %>
-<%= turbo_stream.replace "current-action", partial: 'game_actions/finish_question' %>
+<%= turbo_stream.prepend "question-data", partial: 'game_actions/timer', locals: {game: game} %>
+<%= turbo_stream.replace "current-action", partial: 'game_actions/finish_question', locals: { game: game } %>
+<%= turbo_stream.prepend 'answer-wrapper', '<div data-answers-target="doshow" id="doshow"></div>' %>

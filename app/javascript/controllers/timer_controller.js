@@ -25,8 +25,6 @@ export default class extends Controller {
   }
 
   tickerTargetDisconnected(_element) {
-    this.dispatch('toggle', { detail: { show: false } });
-
     clearInterval(this.tickerInterval)
   }
 }

@@ -2,25 +2,25 @@ import { Controller } from "@hotwired/stimulus"
 import { post } from '@rails/request.js'
 
 export default class extends Controller {
-  static targets = [ "answerForm" ]
+  static targets = [ "answerForm", "dosend", "doshow" ]
 
-  async toggleForm({ detail: { show } }) {
-    if(show) {
-      this.answerFormTarget.classList.remove('d-none')
-    } else {
-      this.answerFormTarget.classList.add('d-none')
+  async doshowTargetConnected(_el) {
+    this.answerFormTarget.classList.remove('d-none')
+  }
+
+  async dosendTargetConnected(_el) {
+    this.answerFormTarget.classList.add('d-none')
       
-      try {
-        await this.doPost(
-          `/games/${this.answerFormTarget.querySelector('#game_id').value}/answers`,
-          new FormData(this.answerFormTarget)
-        )
-      } catch (e) {
-        console.log(e)
-      }
-      
-      this.answerFormTarget.reset()
+    try {
+      await this.doPost(
+        `/games/${this.answerFormTarget.querySelector('#game_id').value}/answers`,
+        new FormData(this.answerFormTarget)
+      )
+    } catch (e) {
+      console.log(e)
     }
+    
+    this.answerFormTarget.reset()
   }
 
   async doPost(url, body) {

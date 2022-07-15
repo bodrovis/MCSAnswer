@@ -10,12 +10,6 @@ class Question < ApplicationRecord
   validates :current, uniqueness: { scope: :game }, if: :current?
 
   def answer_by!(team)
-    params = { playing_team: team, game: }
-
-    if answered?
-      answers.find_or_create_by params
-    else
-      answers.find_by params
-    end
+    answers.find_by playing_team: team, game:
   end
 end
