@@ -46,7 +46,7 @@
 
 <div class="collapse show mt-2" id="questions-list">
   <article>
-    <%= turbo_frame_tag "questions" do %>
+    <%= turbo_frame_tag "questions", data: {controller: 'sortable', 'sortable-game-value': @game.id} do %>
       <%= render @game.questions.includes(:game).order(position: :asc) %>
     <% end %>
   </article>

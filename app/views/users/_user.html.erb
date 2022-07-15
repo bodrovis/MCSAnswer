@@ -20,19 +20,54 @@
   <%= turbo_frame_tag 'tournaments' do %>
     <%== pagy_bootstrap_nav(pagy) if pagy.pages > 1 %>
 
-    <ul>
-      <% playing_teams.each do |team| %>
-        <li>
-          Команда "<%= link_to team.title, team_path(team.team), data: {turbo_frame: '_top'} %>"
-          (турнир "<%= link_to team.game.title, game_path(team.game), data: {turbo_frame: '_top'} %>"),
-          <% if team.game.starts_at.present? %>
-            <%= l team.game.starts_at, format: :longer %>
-          <% end %>
-          <br>
-          Место <%= team.place %><br>Взято <%= team.total_answered %> из <%= team.game.questions.count %>
-        </li>
-      <% end %>
-    </ul>
+    <table class="mt-4 table table-striped table-hover">
+      <thead>
+        <tr>
+          <th class="col-3">Команда</th>
+          <th class="col-3">Турнир</th>
+          <th class="col-1">Место</th>
+          <th class="col-2">Взято</th>
+          <th class="col-3">Состав</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% playing_teams.each do |team| %>
+          <tr>
+            <td>
+              <%= link_to team.title, team_path(team.team), data: {turbo_frame: '_top'} %>
+            </td>
+            <td>
+              <%= link_to team.game.title, game_path(team.game), data: {turbo_frame: '_top'} %>
+              <% if team.game.starts_at.present? %>
+                <%= l team.game.starts_at, format: :longer %>
+              <% end %>
+            </td>
+            <td>
+              <span class="badge bg-success">
+                <%= team.place %>
+              </span>
+            </td>
+            <td>
+              <span class="badge bg-info">
+                <%= team.total_answered %> из <%= team.game.questions_count %>
+              </span>
+            </td>
+            <td>
+              <ul class="list-unstyled">
+                <% team.game_players.each do |game_player| %>
+                  <li>
+                    <%= link_to game_player.name, user_path(game_player.user), data: {turbo_frame: '_top'} %>
+                    <% if game_player.captain? %>
+                      <span class="text-warning"><strong>К</strong></span>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   <% end %>
 
   <% if policy(user).update? %>

@@ -2,7 +2,7 @@
 
 module Admin
   class GamesController < BaseController
-    before_action :set_game!, only: %i[destroy show edit update]
+    before_action :set_game!, only: %i[destroy show edit update reorder_questions]
     before_action :authorize_game!
     after_action :verify_authorized
 
@@ -23,6 +23,12 @@ module Admin
       else
         render :new
       end
+    end
+
+    def reorder_questions
+      @game.swap_questions_by params[:old_index], params[:new_index]
+
+      head :ok
     end
 
     def show; end

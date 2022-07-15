@@ -1,5 +1,5 @@
 <%= turbo_frame_tag question do %>
-  <%= form_with model: [:admin, question.game, question], data: {controller: "reset-form", action: "turbo:submit-end->reset-form#reset"} do |f| %>
+  <%= form_with model: [:admin, question.game, question] do |f| %>
     <%= render 'shared/errors', object: question %>
     
     <div class="mb-3 row">

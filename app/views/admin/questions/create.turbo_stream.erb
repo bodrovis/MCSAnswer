@@ -1,2 +1,3 @@
 <%= turbo_stream.append "questions", render(@question) %>
+<%= turbo_stream.replace Question.new, partial: 'admin/questions/form', locals: { question: @new_question } %>
 <%= prepend_flash %>

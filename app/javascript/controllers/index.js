@@ -21,3 +21,6 @@ application.register("answers", AnswersController)
 
 import TeamResultsController from "./team_results_controller";
 application.register("team-results", TeamResultsController)
+
+import SortableController from "./sortable_controller";
+application.register("sortable", SortableController)

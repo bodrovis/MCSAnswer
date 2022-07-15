@@ -1,18 +1,11 @@
-<%= turbo_frame_tag question do %>
+<%= turbo_frame_tag question, class: 'item', data: {id: question.id} do %>
   <section class="mb-3">
     <p>
-      <strong>Текст вопроса</strong><br>
-      <%= question.body %>
+      <strong><%= question.body %></strong>
     </p>
     
     <p>
-      <strong>Ответ</strong><br>
       <%= question.answer %>
-    </p>
-
-    <p>
-      <strong>Позиция</strong><br>
-      <%= question.position %>
     </p>
 
     <%= link_to t('global.button.edit'), edit_admin_game_question_path(question.game, question),

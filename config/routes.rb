@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :users, only: %i[index destroy]
 
     resources :games do
+      member do
+        patch 'reorder_questions'
+      end
+
       resources :questions, only: %i[new create edit update destroy]
 
       resources :playing_teams, only: %i[new create destroy] do

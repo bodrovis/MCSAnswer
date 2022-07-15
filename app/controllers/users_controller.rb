@@ -68,6 +68,7 @@ class UsersController < ApplicationController
   end
 
   def paginate_tournaments
-    @pagy, @playing_teams = pagy @user.playing_teams.includes(:game, :team).order('games.created_at DESC')
+    @pagy, @playing_teams = pagy @user.playing_teams.includes(:game, :team, game_players: :user)
+                                      .order('games.starts_at DESC, games.created_at DESC')
   end
 end

@@ -8,7 +8,7 @@ module Admin
 
     def new
       authorize Question
-      @question = @game.questions.build
+      @question = @game.build_next_question
     end
 
     def create
@@ -17,6 +17,7 @@ module Admin
       authorize @question
 
       if @question.save
+        @new_question = @game.build_next_question
         respond_to do |format|
           format.turbo_stream do
             flash.now[:success] = t('.success')
