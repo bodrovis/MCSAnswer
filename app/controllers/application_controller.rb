@@ -10,13 +10,21 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    flash[:danger] = t 'global.flash.not_authorized'
-    redirect_to(request.referer || root_path, status: :see_other)
+    respond_to do |format|
+      format.html do
+        flash[:danger] = t 'global.flash.not_authorized'
+        redirect_to(request.referer || root_path, status: :see_other)
+      end
+      format.turbo_stream { head(:forbidden) }
+    end
   end
 
   def notfound(exception)
     logger.warn exception
-    render file: 'public/404.html', status: :not_found, layout: false
+    respond_to do |format|
+      format.html { render file: 'public/404.html', status: :not_found, layout: false }
+      format.turbo_stream { head(:not_found) }
+    end
   end
 
   def current_user

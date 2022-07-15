@@ -80,6 +80,7 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     concurrent-ruby (1.1.10)
+    connection_pool (2.2.5)
     crass (1.0.6)
     cssbundling-rails (1.1.1)
       railties (>= 6.0.0)
@@ -213,6 +214,10 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
+    sidekiq (6.5.1)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
     strscan (3.0.3)
@@ -266,6 +271,7 @@ DEPENDENCIES
   rubocop-i18n (~> 3)
   rubocop-performance (~> 1.11)
   rubocop-rails (~> 2.11)
+  sidekiq (~> 6)
   stimulus-rails
   turbo-rails
   tzinfo-data

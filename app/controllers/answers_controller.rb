@@ -14,19 +14,8 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answer = Answer.find_or_initialize_by question: @question,
-                                           playing_team: current_user.in_game(@game)&.playing_team,
-                                           game: @game
-
-    authorize @answer
-
-    @answer.body = params[:answer]
-
-    @answer.save!
-
-    @team = @answer.playing_team
-    broadcast [@game, :answers], 'answers/toggle'
-
+    ProcessAnswerJob.perform_later @question, @game, params[:answer], current_user
+    
     respond_to do |format|
       format.turbo_stream { head(:ok) }
     end

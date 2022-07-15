@@ -31,6 +31,8 @@ module McsAnswer
 
     config.time_zone = 'Riga'
 
+    config.active_job.queue_adapter = :sidekiq
+
     config.middleware.insert_after ActionDispatch::Static, Rack::Deflater,
                                    include: Rack::Mime::MIME_TYPES.select { |_k, v|
                                               v =~ /text|json|javascript/
