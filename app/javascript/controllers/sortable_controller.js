@@ -34,7 +34,6 @@ export default class extends Controller {
   }
 
   enable() {
-    console.log('hi')
     this.sortable.option('disabled', false)
   }
 }
