@@ -26,7 +26,8 @@ module Admin
     end
 
     def reorder_questions
-      @game.swap_questions_by params[:old_index], params[:new_index]
+      @question = @game.questions.find_by position: params[:old_index]
+      @question.insert_at params[:new_index]
 
       head :ok
     end

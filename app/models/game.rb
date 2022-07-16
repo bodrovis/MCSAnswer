@@ -8,17 +8,6 @@ class Game < ApplicationRecord
 
   validates :title, presence: true, length: { minimum: 3, maximum: 150 }
 
-  def swap_questions_by(old_pos, new_pos)
-    Game.transaction do
-      q1 = questions.find_by position: old_pos
-      q2 = questions.find_by position: new_pos
-
-      q2.update! position: 0
-      q1.update! position: new_pos
-      q2.update! position: old_pos
-    end
-  end
-
   def current_question
     questions.find_by(current: true)
   end

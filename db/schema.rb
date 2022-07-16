@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_15_142202) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_16_153026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,8 +78,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_142202) do
     t.integer "position", default: 1, null: false
     t.boolean "current"
     t.index ["current"], name: "index_questions_on_current"
+    t.index ["game_id", "position"], name: "unique_game_id_position", unique: true
     t.index ["game_id"], name: "index_questions_on_game_id"
-    t.index ["position", "game_id"], name: "index_questions_on_position_and_game_id", unique: true
   end
 
   create_table "teams", force: :cascade do |t|

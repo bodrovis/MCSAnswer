@@ -2,6 +2,7 @@
 
 class Question < ApplicationRecord
   belongs_to :game, counter_cache: true
+  acts_as_list scope: :game
   has_many :answers, dependent: :destroy
 
   validates :body, presence: true
