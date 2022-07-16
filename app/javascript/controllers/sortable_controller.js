@@ -10,7 +10,7 @@ export default class extends Controller {
   connect() {
     const gameId = this.gameValue
 
-    new Sortable(this.element, {
+    this.sortable = new Sortable(this.element, {
       onEnd: async function(e) {
         try {
           this.option('disabled', true)
@@ -27,5 +27,14 @@ export default class extends Controller {
         }
       }
     })
+  }
+
+  disable() {
+    this.sortable.option('disabled', true)
+  }
+
+  enable() {
+    console.log('hi')
+    this.sortable.option('disabled', false)
   }
 }

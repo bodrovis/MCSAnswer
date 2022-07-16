@@ -48,6 +48,6 @@
       </div>
     </div>
 
-    <%= f.submit t('global.button.submit'), class: 'btn btn-primary' %>
+    <%= f.submit t('global.button.submit'), class: 'btn btn-primary', data: {action: 'click->sortable#enable'} %>
   <% end %>
 <% end %>

@@ -10,7 +10,7 @@
     </p>
 
     <%= link_to t('global.button.edit'), edit_admin_game_question_path(question.game, question),
-      class: 'btn btn-info btn-sm' %>
+      class: 'btn btn-info btn-sm', data: {action: 'click->sortable#disable'} %>
     <%= link_to t('global.button.delete'), admin_game_question_path(question.game, question),
       class: 'btn btn-danger btn-sm',
       data: {turbo_method: :delete, turbo_confirm: t('global.dialog.sure')} %>
