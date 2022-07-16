@@ -1,6 +1,7 @@
 <%= turbo_frame_tag question, class: 'item', data: {id: question.id} do %>
   <section class="mb-3">
     <p>
+      <span class="badge text-bg-info"><%= question.position %></span>
       <strong><%= question.body %></strong>
     </p>
     
