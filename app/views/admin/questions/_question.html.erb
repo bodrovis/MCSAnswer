@@ -1,8 +1,9 @@
-<%= turbo_frame_tag question, class: 'item', data: {id: question.id} do %>
+<%= turbo_frame_tag question, class: 'item', data: {id: question.id, 'sortable-target': 'item'} do %>
   <section class="mb-3">
     <p>
-      <span class="badge bg-info"><%= question.position %></span>
-      <strong><%= question.body %></strong>
+      <i class="bi bi-arrows-move js-sort-handle fs-3"></i>
+      <span class="badge bg-info js-position"></span>
+      <strong class=""><%= question.body %></strong>
     </p>
     
     <p>
@@ -10,7 +11,7 @@
     </p>
 
     <%= link_to t('global.button.edit'), edit_admin_game_question_path(question.game, question),
-      class: 'btn btn-info btn-sm', data: {action: 'click->sortable#disable'} %>
+      class: 'btn btn-info btn-sm' %>
     <%= link_to t('global.button.delete'), admin_game_question_path(question.game, question),
       class: 'btn btn-danger btn-sm',
       data: {turbo_method: :delete, turbo_confirm: t('global.dialog.sure')} %>
