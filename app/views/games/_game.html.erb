@@ -1,19 +1,21 @@
-<h2>
-  <%= link_to game.title, game_path(game), data: {turbo_frame: '_top'} %>
+<div class="card mb-4">
   <% if game.starts_at.present? %>
-    <small><%= l game.starts_at, format: :longer %></small>
-<% end %>
-</h2>
+    <div class="card-header">
+      <%= l game.starts_at, format: :longer %>
+    </div>
+  <% end %>
 
-<p>
-  <small>
-    <%= game.description %>
-  </small>
-</p>
+  <div class="card-body">
+    <h4 class="card-title">
+      <%= link_to game.title, game_path(game) %>
+    </h4>
 
-<p>Ведущий: <%= link_to game.host.name, user_path(game.host) %></p>
+    <p class="card-text">
+      <%= game.description %><br>
+      Ведущий: <%= link_to game.host.name, user_path(game.host) %>
+    </p>
 
-<%= link_to 'Результаты', game_answers_path(game_id: game), class: 'btn btn-info' %>
-<%= link_to 'Команды и составы', game_playing_teams_path(game), class: 'btn btn-secondary' %>
-
-<hr>
+    <%= link_to 'Результаты', game_answers_path(game_id: game), class: 'btn btn-primary' %>
+    <%= link_to 'Команды и составы', game_playing_teams_path(game), class: 'btn btn-secondary' %>
+  </div>
+</div>
