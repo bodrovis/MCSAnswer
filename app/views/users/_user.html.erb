@@ -1,19 +1,25 @@
 <%= turbo_frame_tag user do %>
   <h1 class="mb-4"><%= user.name %></h1>
 
-  <div class="mb-3">
-    <%= gravatar_for(user: user, size: 200) %>
+  <div class="row mb-5">
+    <div class="col-md-2">
+      <%= gravatar_for(user: user, size: 180, css_class: 'img-fluid') %>
+    </div>
+    <div class="col-md-10 mt-3 mt-md-0">
+      <% scope = 'activerecord.attributes.user' %>
+      <p>
+        <strong>ID</strong>
+        <%= user.id %>
+        <br>
+        <strong><%= t 'role', scope: scope %></strong>
+        <%= t(user.role, scope: 'global.user.roles') %>
+      </p>
+
+      <% if policy(user).update? %>
+        <%= link_to t('global.button.edit'), edit_user_path(user), class: 'btn btn-secondary' %>
+      <% end %>
+    </div>
   </div>
-
-  <% scope = 'activerecord.attributes.user' %>
-
-  <p>
-    <strong>ID</strong>
-    <%= user.id %>
-    <br>
-    <strong><%= t 'role', scope: scope %></strong>
-    <%= t(user.role, scope: 'global.user.roles') %>
-  </p>
 
   <h2>Турниры</h2>
 
@@ -68,9 +74,5 @@
         <% end %>
       </tbody>
     </table>
-  <% end %>
-
-  <% if policy(user).update? %>
-    <%= link_to t('global.button.edit'), edit_user_path(user), class: 'btn btn-secondary' %>
   <% end %>
 <% end %>

@@ -7,9 +7,6 @@ import { application } from "./application"
 import RedirectController from "./redirect_controller";
 application.register("redirect", RedirectController)
 
-import ResetFormController from "./reset_form_controller";
-application.register("reset-form", ResetFormController)
-
 import Recaptchav2Controller from "./recaptcha_v2_controller";
 application.register("recaptcha-v2", Recaptchav2Controller)
 
@@ -21,6 +18,3 @@ application.register("answers", AnswersController)
 
 import TeamResultsController from "./team_results_controller";
 application.register("team-results", TeamResultsController)
-
-import SortableController from "./sortable_controller";
-application.register("sortable", SortableController)

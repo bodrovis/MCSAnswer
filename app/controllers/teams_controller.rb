@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
   before_action :set_team!, only: :show
 
   def index
-    @pagy, @teams = pagy Team.order(title: :asc)
+    @pagy, @teams = pagy Team.order(updated_at: :desc, title: :asc)
   end
 
   def show
