@@ -12,10 +12,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hotwired/stimulus@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@hotwired/stimulus@npm:3.0.1"
-  checksum: 5f2dbfeb3dfff8472e1d0ef7db59a18d71540651861c0c5839fa32c56fcd5cae3fc6183a94746303c5adfbd66a9b552a3167e7e193c04dfaa6f51a8e5bea8e5e
+"@hotwired/stimulus@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@hotwired/stimulus@npm:3.1.0"
+  checksum: 82d80b17aa8cd8b69e20da4cc86b768fd8c52d06b40c1606b92526fd405264a65c617d5c051445a5b91af05620ab4475b3c5adc2011ed8d787b4955f9e924845
   languageName: node
   linkType: hard
 
@@ -94,26 +94,6 @@ __metadata:
   version: 7.0.3
   resolution: "@rails/actioncable@npm:7.0.3"
   checksum: 6ae5de0f9aaa8261117c2cc8b82ab41854222687422697158de952b8bf04a3f0c9e98620516129f6541970119ee3e4ae8af4b9cd4621c6617c0dae151eb07d64
-  languageName: node
-  linkType: hard
-
-"@rails/actiontext@npm:^7.0.3":
-  version: 7.0.3
-  resolution: "@rails/actiontext@npm:7.0.3"
-  dependencies:
-    "@rails/activestorage": ">= 7.0.0-alpha1"
-  peerDependencies:
-    trix: ^1.3.1
-  checksum: 9179657a4c7da3ca4255219db1cfd8691079a2f3c06ee5370bb94a1bdff00f74b9483713eae0eab032d79011c6328f5f96ee35a31bb9f4f050a7658c187a128d
-  languageName: node
-  linkType: hard
-
-"@rails/activestorage@npm:>= 7.0.0-alpha1":
-  version: 7.0.3
-  resolution: "@rails/activestorage@npm:7.0.3"
-  dependencies:
-    spark-md5: ^3.0.1
-  checksum: 0b087b115a3c3513041601f48c105bf4784701a57a13b356718e32ec72f11d38c26fb7780cecc42d8f5b813025e04f4b0fdd78081dfab41a67054d09748a106f
   languageName: node
   linkType: hard
 
@@ -198,20 +178,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "app@workspace:."
   dependencies:
-    "@hotwired/stimulus": ^3.0.1
+    "@hotwired/stimulus": ^3.1.0
     "@hotwired/turbo-rails": ^7.1.3
     "@popperjs/core": ^2.11.5
-    "@rails/actiontext": ^7.0.3
     "@rails/request.js": ^0.0.6
     autoprefixer: ^10.4.7
-    bootstrap: ^5.1.3
+    bootstrap: ^5.2.0
     bootstrap-icons: ^1.9.1
     esbuild: ^0.14.49
     postcss: ^8.4.14
     postcss-cli: ^10.0.0
     sass: ^1.53.0
     sortablejs: ^1.15.0
-    trix: ^2.0.0-beta.0
   languageName: unknown
   linkType: soft
 
@@ -271,12 +249,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bootstrap@npm:^5.1.3":
-  version: 5.1.3
-  resolution: "bootstrap@npm:5.1.3"
+"bootstrap@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "bootstrap@npm:5.2.0"
   peerDependencies:
-    "@popperjs/core": ^2.10.2
-  checksum: 301b5ed872efba061104cf22ac93568e3837867fb5527ab9326a51510fb752bd4883e1d488225c8be72f86d9d3a55ef5b166aa7fa62c2fdd077c3f05b65752f8
+    "@popperjs/core": ^2.11.5
+  checksum: 9dbfb5d26bbdac3e27a6b46cb7456cd4dd75ae3b48644737809885b8ea9c265d3359c4cdbf25a55bb7e5046f51e441557033ba21eeaf24ef8316bfbb3d420084
   languageName: node
   linkType: hard
 
@@ -1666,13 +1644,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"spark-md5@npm:^3.0.1":
-  version: 3.0.2
-  resolution: "spark-md5@npm:3.0.2"
-  checksum: 5feebff0bfabcecf56ba03af3e38fdb068272ed41fbf0a94ff9ef65b9bb9cb1dd69be3684db6542e62497b1eac3ae324c07ac4dcb606465dc36ca048177077bf
-  languageName: node
-  linkType: hard
-
 "ssri@npm:^9.0.0":
   version: 9.0.1
   resolution: "ssri@npm:9.0.1"
@@ -1738,13 +1709,6 @@ __metadata:
   dependencies:
     is-number: ^7.0.0
   checksum: f76fa01b3d5be85db6a2a143e24df9f60dd047d151062d0ba3df62953f2f697b16fe5dad9b0ac6191c7efc7b1d9dcaa4b768174b7b29da89d4428e64bc0a20ed
-  languageName: node
-  linkType: hard
-
-"trix@npm:^2.0.0-beta.0":
-  version: 2.0.0-beta.0
-  resolution: "trix@npm:2.0.0-beta.0"
-  checksum: a10efdfb56548dee4892dba457b42472d080cb02904d8cc43475f68edc749f3ac3afe4f2820fe9e652ad00d8ce53448670f61f776f719c6b6d9d0828964351fe
   languageName: node
   linkType: hard
 
