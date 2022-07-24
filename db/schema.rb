@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_18_115743) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_24_153529) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,6 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_18_115743) do
     t.datetime "question_ends_at"
     t.boolean "published"
     t.integer "questions_count"
+    t.integer "playing_teams_count"
     t.index ["host_id"], name: "index_games_on_host_id"
     t.index ["published"], name: "index_games_on_published"
   end

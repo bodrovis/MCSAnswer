@@ -2,7 +2,7 @@
 
 class PlayingTeam < ApplicationRecord
   belongs_to :team
-  belongs_to :game
+  belongs_to :game, counter_cache: true
   has_many :game_players, dependent: :destroy
   has_many :users, through: :game_players
   has_many :answers, dependent: :destroy

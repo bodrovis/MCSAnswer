@@ -7,3 +7,8 @@
 
 # PlayingTeam.all.find_each { |t| t.update place: nil, total_answered: 0 }
 # Answer.all.find_each { |a| a.update correct: false }
+Game.all.each do |g|
+
+  Game.reset_counters(g.id, :playing_teams)
+
+  end
