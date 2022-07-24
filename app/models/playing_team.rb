@@ -10,4 +10,10 @@ class PlayingTeam < ApplicationRecord
   delegate :title, to: :team
 
   validates :total_answered, numericality: { only_integer: true, greater_than: -1 }
+
+  scope :game_published_finished, ->(count = nil) do
+    query = joins(:game).where(games: {published: true, finished: true}).order('games.starts_at DESC, games.created_at DESC')
+    query = query.limit(count) unless count.nil?
+    query
+  end
 end
