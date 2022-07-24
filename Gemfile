@@ -46,15 +46,15 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pundit', '~> 2.1'
 
 gem 'activerecord-import', '~> 1.4'
+gem 'acts_as_list', '~> 1.0'
 gem 'pagy', '~> 5.10'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-brotli', '~> 1.2'
 gem 'recaptcha', '~> 5.10'
 gem 'sidekiq', '~> 6'
-gem 'acts_as_list', '~> 1.0'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
+gem 'image_processing', '~> 1.2'
 
 group :production do
   gem 'dalli', '~> 3'

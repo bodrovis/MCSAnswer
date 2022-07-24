@@ -8,8 +8,8 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @pagy, @playing_teams = pagy @team.playing_teams.
-      includes(:game, game_players: :user).game_published_finished
+    @pagy, @playing_teams = pagy @team.playing_teams
+                                      .includes(:game, game_players: :user).game_published_finished
   end
 
   private
