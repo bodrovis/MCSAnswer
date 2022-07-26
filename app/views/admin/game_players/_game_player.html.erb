@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "#{dom_id(game_player.playing_team)}_#{dom_id(game_player)}}" do %>
-  <%= game_player.name_with_email %>
+  <%= link_to game_player.name_with_email, user_path(game_player.user) %>
   <% if game_player.captain? %>
     <small>капитан</small>
   <% end %>
