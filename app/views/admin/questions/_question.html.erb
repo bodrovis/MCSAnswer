@@ -6,8 +6,8 @@
       <strong class=""><%= question.body %></strong>
     </p>
     
-    <p>
-      <%= question.answer %>
+    <p class="hide-reveal">
+      <span><%= question.answer %></span>
     </p>
 
     <%= link_to t('global.button.edit'), edit_admin_game_question_path(question.game, question),

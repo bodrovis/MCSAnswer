@@ -36,3 +36,15 @@ table.team-results {
     min-width: 150px;
   }
 }
+
+.hide-reveal {
+  & > span {
+    visibility: hidden;
+  }
+  
+  &:hover {
+    & > span {
+      visibility: visible;
+    }
+  }
+}
