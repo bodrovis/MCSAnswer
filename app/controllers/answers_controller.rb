@@ -10,7 +10,7 @@ class AnswersController < ApplicationController
   def index
     @questions = @game.questions.order(position: :asc)
     @playing_teams = @game.playing_teams.includes(:team).order(place: :asc, total_answered: :desc, 'teams.title': :asc)
-    authorize Answer
+    authorize @game, :index_answers?
   end
 
   def create

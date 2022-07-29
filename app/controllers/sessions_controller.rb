@@ -15,8 +15,9 @@ class SessionsController < ApplicationController
     if check && auth
       do_sign_in
     else
-      flash.now[:warning] = t('recaptcha.errors.verification_failed') unless check
       flash.now[:warning] = t('.invalid_creds') if check && !auth
+      flash.now[:warning] = t('recaptcha.errors.verification_failed') unless check
+
       render :new
     end
   end

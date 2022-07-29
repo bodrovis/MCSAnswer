@@ -2,7 +2,8 @@
 
 class AnswerPolicy < ApplicationPolicy
   def index?
-    true
+    # overriden by GamePolicy#index_answers?
+    false
   end
 
   def create?

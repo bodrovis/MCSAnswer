@@ -7,7 +7,7 @@
   <%= link_to 'Игра', game_path(@game), class: 'btn btn-primary' %>
   <%= link_to 'Команды и составы', game_playing_teams_path(@game), class: 'btn btn-secondary' %>
   <% if policy(@game).recalculate? %>
-    <%= link_to 'Пересчитать итог', recalculate_game_path(@game), class: 'btn btn-secondary', data: {turbo_method: :patch} %>
+    <%= link_to 'Пересчитать итог', recalculate_game_path(@game), class: 'btn btn-warning', data: {turbo_method: :patch} %>
   <% end %>
 </div>
 

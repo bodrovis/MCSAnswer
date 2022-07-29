@@ -2,11 +2,17 @@
 
 class GamePolicy < ApplicationPolicy
   def show?
-    true
+    record.finished? ||
+      user.participates_in?(record)
   end
 
   def index?
     true
+  end
+
+  def index_answers?
+    record.finished? ||
+      user.participates_in?(record)
   end
 
   def next_question?

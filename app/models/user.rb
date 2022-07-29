@@ -22,6 +22,10 @@ class User < ApplicationRecord
     game_players.joins(playing_team: :game).where(playing_team: { game: }).first
   end
 
+  def participates_in?(game)
+    in_game(game).present? || game.hosted_by?(self)
+  end
+
   def guest?
     false
   end

@@ -13,6 +13,14 @@ class GuestUser
     false
   end
 
+  def in_game(_)
+    nil
+  end
+
+  def participates_in?(_)
+    false
+  end
+
   def method_missing(name, *args, &)
     return false if name.to_s.end_with?('_role?')
 

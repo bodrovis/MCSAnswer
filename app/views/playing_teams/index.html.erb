@@ -7,8 +7,13 @@
 </h1>
 
 <div class="mb-3">
-  <%= link_to 'Игра', game_path(@game), class: 'btn btn-primary' %>
-  <%= link_to 'Результаты', game_answers_path(game_id: @game), class: 'btn btn-info' %>
+  <% if policy(@game).show? %>
+    <%= link_to 'Игра', game_path(@game), class: 'btn btn-primary' %>
+  <% end %>
+  <% if policy(@game).index_answers? %>
+    <%= link_to 'Результаты', game_answers_path(game_id: @game), class: 'btn btn-info' %>
+  <% end %>
+  <%= link_to 'К списку игр', games_path, class: 'btn btn-secondary' %>
 </div>
 
 <% @playing_teams.each do |team| %>
