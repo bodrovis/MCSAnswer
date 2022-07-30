@@ -2,7 +2,7 @@
 
 class Question < ApplicationRecord
   belongs_to :game, counter_cache: true
-  acts_as_list scope: :game
+  acts_as_list scope: :game, sequential_updates: false
   has_many :answers, dependent: :destroy
 
   validates :body, presence: true

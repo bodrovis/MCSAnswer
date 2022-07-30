@@ -6,7 +6,7 @@ export default class extends Controller {
   static values = {
     game: String
   }
-  static targets = [ 'item' ]
+  static targets = [ 'position' ]
 
   connect() {
     const gameId = this.gameValue
@@ -51,8 +51,8 @@ export default class extends Controller {
   }
 
   updatePositions() {
-    this.itemTargets.forEach((item, index) => {
-      item.querySelector('.js-position').innerText = index + 1
+    this.positionTargets.forEach((position, index) => {
+      position.innerText = index + 1
     })
   }
 }

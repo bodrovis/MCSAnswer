@@ -1,8 +1,8 @@
-<%= turbo_frame_tag question, class: 'item', data: {id: question.id, 'sortable-target': 'item'} do %>
+<%= turbo_frame_tag question, class: 'item' do %>
   <section class="mb-3">
     <p>
       <i class="bi bi-arrows-move js-sort-handle fs-3"></i>
-      <span class="badge bg-info js-position"><%= question.position %></span>
+      <span class="badge bg-info" data-sortable-target="position"><%= question.position %></span>
       <strong class=""><%= question.body %></strong>
     </p>
     
