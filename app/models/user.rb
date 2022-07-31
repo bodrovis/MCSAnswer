@@ -18,6 +18,8 @@ class User < ApplicationRecord
   before_save :set_gravatar_hash, if: :email_changed?
   before_create :name_from_email, unless: proc { name.present? }
 
+  scope :played_at_least_once, -> { where.not(games_played: 0).order(games_won: :desc) }
+
   def in_game(game)
     game_players.joins(playing_team: :game).where(playing_team: { game: }).first
   end

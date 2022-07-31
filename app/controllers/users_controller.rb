@@ -16,11 +16,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     @user.validate
 
-    check = (verify_recaptcha action: 'signup', minimum_score: 0.6,
-                              secret_key: ENV.fetch('RECAPTCHA_SECRET_V3', nil)) ||
-            (verify_recaptcha model: @user, secret_key: ENV.fetch('RECAPTCHA_SECRET', nil))
-
-    if check && @user.save
+    if verify_captchas && @user.save
       sign_in @user
       respond_to do |format|
         format.turbo_stream do
@@ -34,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.where.not(games_played: 0).order(games_won: :desc)
+    @users = User.played_at_least_once
   end
 
   def show; end
@@ -69,5 +65,11 @@ class UsersController < ApplicationController
 
   def paginate_tournaments
     @pagy, @playing_teams = pagy @user.playing_teams.includes(:game, :team, game_players: :user).game_published_finished
+  end
+
+  def verify_captchas
+    (verify_recaptcha action: 'signup', minimum_score: 0.6,
+                      secret_key: ENV.fetch('RECAPTCHA_SECRET_V3', nil)) ||
+      (verify_recaptcha model: @user, secret_key: ENV.fetch('RECAPTCHA_SECRET', nil))
   end
 end

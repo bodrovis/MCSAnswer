@@ -5,11 +5,10 @@ class AnswersController < ApplicationController
   before_action :set_game!
   before_action :set_question!, only: :create
   before_action :set_answer!, only: %i[edit update]
-  after_action :verify_authorized, except: :create
 
   def index
     @questions = @game.questions.order(position: :asc)
-    @playing_teams = @game.playing_teams.includes(:team).order(place: :asc, total_answered: :desc, 'teams.title': :asc)
+    @playing_teams = @game.participating_teams
     authorize @game, :index_answers?
   end
 
@@ -23,23 +22,9 @@ class AnswersController < ApplicationController
 
   def toggle
     @answer = @game.answers.find params[:id]
-    @team = @answer.playing_team
-
     authorize @answer
 
-    Answer.transaction do
-      # rubocop:disable Rails/SkipsModelValidations
-      @answer.toggle! :correct
-      @answer.correct? ? @team.increment!(:total_answered) : @team.decrement!(:total_answered)
-      # rubocop:enable Rails/SkipsModelValidations
-    end
-
-    broadcast [@game, :answers], 'answers/toggle', locals: {
-      game: @game,
-      answer: @answer,
-      team: @team,
-      question: @answer.question
-    }
+    Answers::ToggleService.call @game, @answer, current_user
 
     respond_to do |format|
       format.turbo_stream { head(:ok) }
@@ -53,14 +38,7 @@ class AnswersController < ApplicationController
   def update
     authorize @answer
 
-    if @answer.update answer_params
-      broadcast [@game, :answers], 'answers/toggle', locals: {
-        game: @game,
-        answer: @answer,
-        team: @answer.playing_team,
-        question: @answer.question
-      }
-
+    if Answers::UpdateService.call(@answer, @game, answer_params)
       respond_to do |format|
         format.turbo_stream { head(:ok) }
       end

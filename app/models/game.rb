@@ -8,6 +8,12 @@ class Game < ApplicationRecord
 
   validates :title, presence: true, length: { minimum: 3, maximum: 150 }
 
+  scope :published, -> { includes(:host).where(published: true).order(created_at: :desc) }
+
+  def participating_teams
+    playing_teams.includes(:team).order(place: :asc, total_answered: :desc, 'teams.title': :asc)
+  end
+
   def current_question
     questions.find_by(current: true)
   end

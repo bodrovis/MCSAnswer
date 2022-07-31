@@ -6,7 +6,7 @@
       <% unless answer.new_record? %>
         <%= tag.abbr (answer.body.present? ? answer.body : tag.em("Нет ответа")), title: l(answer.created_at) %>
         <div class="d-none js-actions">
-          <%= link_to (answer.correct? ? 'Нет' : 'Да'), toggle_game_answer_path(answer.game, answer),
+          <%= link_to (answer.correct? ? "&ndash;".html_safe : '+'), toggle_game_answer_path(answer.game, answer),
             class: 'btn btn-sm btn-secondary', data: {turbo_method: :patch} %>
           <%= link_to 'Р', edit_game_answer_path(answer.game, answer), class: 'btn btn-sm btn-warning' %>
         </div>
