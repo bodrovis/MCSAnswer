@@ -7,9 +7,6 @@
 </h1>
 
 <div class="mb-3">
-  <% if policy(@game).show? %>
-    <%= link_to 'Игра', game_path(@game), class: 'btn btn-primary' %>
-  <% end %>
   <%= link_to 'Команды и составы', game_playing_teams_path(@game), class: 'btn btn-secondary' %>
   <% if policy(@game).index_answers? %>
     <%= link_to 'Результаты', game_answers_path(game_id: @game), class: 'btn btn-info' %>
