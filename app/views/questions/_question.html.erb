@@ -1,7 +1,7 @@
 <section class="mb-3">
   <p>
-    <span class="badge bg-info" data-sortable-target="position"><%= question.position %></span>
-    <strong class=""><%= question.body %></strong>
+    <span class="badge bg-info"><%= question.position %></span>
+    <%= question.body.html_safe %>
   </p>
   
   <p class="hide-reveal">
