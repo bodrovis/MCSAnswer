@@ -39,12 +39,12 @@ table.team-results {
 
 .hide-reveal {
   & > span {
-    visibility: hidden;
+    background-color: black;
   }
   
   &:hover {
     & > span {
-      visibility: visible;
+      background-color: transparent;
     }
   }
 }
