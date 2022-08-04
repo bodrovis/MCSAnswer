@@ -1,7 +1,11 @@
-<% provide :page_title, t('.title') %>
+<% title = "#{@game.title} | #{t('.title')}" %>
+<% provide :page_title, title %>
 <% currently_at t('menu.games') %>
 
-<h1 class="mb-4"><%= t('.title') %></h1>
+<h1 class="mb-4">
+  <%= t('.title') %>
+  <small><%= @game.title %></small>
+</h1>
 
 <div class="mb-3">
   <%= link_to 'Игра', game_path(@game), class: 'btn btn-primary' %>
