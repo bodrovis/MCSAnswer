@@ -10,9 +10,13 @@ class GamePolicy < ApplicationPolicy
     true
   end
 
+  def index_questions?
+    record.finished? && record.published?
+  end
+
   def index_answers?
-    record.finished? ||
-      user.participates_in?(record)
+    record.published? && (record.finished? ||
+      user.participates_in?(record))
   end
 
   def next_question?

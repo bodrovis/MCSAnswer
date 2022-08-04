@@ -33,6 +33,8 @@ Rails.application.routes.draw do
         patch 'toggle'
       end
     end
+
+    resources :questions, only: %i[index]
   end
 
   resources :game_actions, only: %i[] do

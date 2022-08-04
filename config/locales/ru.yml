@@ -163,3 +163,6 @@ ru:
       success: С возвращением, %{name}!
     destroy:
       success: До новых встреч!
+  questions:
+    index:
+      title: Список вопросов

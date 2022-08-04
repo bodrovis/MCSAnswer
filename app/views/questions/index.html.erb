@@ -1,0 +1,11 @@
+<% provide :page_title, t('.title') %>
+<% currently_at t('menu.games') %>
+
+<h1 class="mb-4">
+  <%= t('.title') %>
+  <small>на игру <%= @game.title %></small>
+</h1>
+
+<article>
+  <%= render @questions %>
+</article>

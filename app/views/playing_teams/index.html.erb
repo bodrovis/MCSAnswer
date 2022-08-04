@@ -13,6 +13,9 @@
   <% if policy(@game).index_answers? %>
     <%= link_to 'Результаты', game_answers_path(game_id: @game), class: 'btn btn-info' %>
   <% end %>
+  <% if policy(@game).index_questions? %>
+  <%= link_to 'Вопросы', game_questions_path(game_id: @game), class: 'btn btn-warning' %>
+<% end %>
   <%= link_to 'К списку игр', games_path, class: 'btn btn-secondary' %>
 </div>
 
