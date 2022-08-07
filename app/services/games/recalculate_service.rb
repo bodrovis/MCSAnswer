@@ -8,7 +8,7 @@ module Games
     end
 
     def call
-      Game.transaction do
+      tx_and_commit do
         all_teams = @game.playing_teams.order(total_answered: :desc).to_a
 
         all_teams.group_by(&:total_answered).each.with_index do |(_count, teams), index|

@@ -13,14 +13,12 @@ module Answers
       current_state = @answer.correct?
       @team = @answer.playing_team
 
-      Answer.transaction do
+      tx_and_commit do
         @answer.update(correct: !current_state)
         # rubocop:disable Rails/SkipsModelValidations
         @answer.correct? ? @team.increment!(:total_answered) : @team.decrement!(:total_answered)
         # rubocop:enable Rails/SkipsModelValidations
       end
-
-      post_call
     end
 
     private

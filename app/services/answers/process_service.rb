@@ -11,14 +11,16 @@ module Answers
     end
 
     def call
-      @team = @user.in_game(@game)&.playing_team
-      @answer = @game.answers.build question: @question,
-                                    playing_team: @team,
-                                    body: @answer_text
+      tx_and_commit do
+        @team = @user.in_game(@game)&.playing_team
+        @answer = @game.answers.build question: @question,
+                                      playing_team: @team,
+                                      body: @answer_text
 
-      return unless Pundit.policy(@user, @answer).create?
+        return unless Pundit.policy(@user, @answer).create?
 
-      @answer.save && post_process
+        @answer.save
+      end
     end
 
     private

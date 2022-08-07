@@ -3,10 +3,10 @@
 module GameActions
   class AnswerQuestion < Base
     def call
-      @current_question = @game.current_question
-      @current_question.update answered: true
-
-      post_call
+      tx_and_commit do
+        @current_question = @game.current_question
+        @current_question.update answered: true
+      end
     end
 
     private

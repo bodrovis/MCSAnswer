@@ -3,9 +3,9 @@
 module GameActions
   class StartQuestion < Base
     def call
-      @game.update question_ends_at: 60.seconds.from_now
-
-      post_call
+      tx_and_commit do
+        @game.update question_ends_at: 60.seconds.from_now
+      end
     end
 
     private

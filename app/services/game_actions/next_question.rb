@@ -3,7 +3,7 @@
 module GameActions
   class NextQuestion < Base
     def call
-      Game.transaction do
+      tx_and_commit do
         current_question = @game.current_question
         current_question&.update current: false
         @next_question = @game.next_question current_question
@@ -14,8 +14,6 @@ module GameActions
           @game.update finished: true
         end
       end
-
-      post_call
     end
 
     private

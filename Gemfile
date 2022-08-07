@@ -47,6 +47,7 @@ gem 'pundit', '~> 2.1'
 
 gem 'activerecord-import', '~> 1.4'
 gem 'acts_as_list', '~> 1.0'
+gem 'after_commit_everywhere', '~> 1'
 gem 'pagy', '~> 5.10'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-brotli', '~> 1.2'

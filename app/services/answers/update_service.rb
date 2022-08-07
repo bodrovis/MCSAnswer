@@ -10,7 +10,9 @@ module Answers
     end
 
     def call
-      @answer.update(@answer_params) && post_call
+      tx_and_commit do
+        @answer.update(@answer_params)
+      end
     end
 
     private

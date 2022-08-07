@@ -70,6 +70,9 @@ GEM
       tzinfo (~> 2.0)
     acts_as_list (1.0.4)
       activerecord (>= 4.2)
+    after_commit_everywhere (1.2.2)
+      activerecord (>= 4.2)
+      activesupport
     ast (2.4.2)
     bcrypt (3.1.18)
     bindex (0.8.1)
@@ -224,7 +227,7 @@ GEM
     ruby-progressbar (1.11.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
-    sidekiq (6.5.2)
+    sidekiq (6.5.3)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.5.0)
@@ -259,6 +262,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-import (~> 1.4)
   acts_as_list (~> 1.0)
+  after_commit_everywhere (~> 1)
   bcrypt (~> 3.1.7)
   bootsnap
   brakeman (~> 5)
