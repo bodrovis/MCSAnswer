@@ -4,15 +4,17 @@ module Answers
   class UpdateService < ::ApplicationService
     def initialize(answer, game, answer_params)
       super
-      @answer = answer
+      @object = answer
       @game = game
       @answer_params = answer_params
     end
 
     def call
       tx_and_commit do
-        @answer.update(@answer_params)
+        @object.update(@answer_params)
       end
+
+      super
     end
 
     private
@@ -20,9 +22,9 @@ module Answers
     def post_call
       broadcast_later [@game, :answers], 'answers/toggle', locals: {
         game: @game,
-        answer: @answer,
-        team: @answer.playing_team,
-        question: @answer.question
+        answer: @object,
+        team: @object.playing_team,
+        question: @object.question
       }
     end
   end

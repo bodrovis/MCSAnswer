@@ -38,7 +38,9 @@ class AnswersController < ApplicationController
   def update
     authorize @answer
 
-    if Answers::UpdateService.call(@answer, @game, answer_params)
+    success, @answer = Answers::UpdateService.call(@answer, @game, answer_params)
+
+    if success
       respond_to do |format|
         format.turbo_stream { head(:ok) }
       end

@@ -9,6 +9,12 @@ class ApplicationService
 
   def initialize(*_); end
 
+  def call
+    return unless @object.present? && @object.respond_to?(:errors)
+
+    [@object.errors.none?, @object]
+  end
+
   private
 
   def tx_and_commit
