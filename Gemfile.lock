@@ -138,6 +138,7 @@ GEM
       digest
       net-protocol
       timeout
+    newrelic_rpm (8.9.0)
     nio4r (2.5.8)
     nokogiri (1.13.8-x64-mingw-ucrt)
       racc (~> 1.4)
@@ -273,6 +274,7 @@ DEPENDENCIES
   dotenv-rails (~> 2.7)
   image_processing (~> 1.2)
   jsbundling-rails
+  newrelic_rpm
   pagy (~> 5.10)
   pg (~> 1.0)
   propshaft
