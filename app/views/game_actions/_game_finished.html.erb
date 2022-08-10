@@ -2,6 +2,4 @@
 
 <%= link_to 'Результаты', game_answers_path(game_id: game), class: 'btn btn-info' %>
 <%= link_to 'Команды и составы', game_playing_teams_path(game), class: 'btn btn-secondary' %>
-<% if policy(game).index_questions? %>
-  <%= link_to 'Вопросы', game_questions_path(game_id: game), class: 'btn btn-warning' %>
-<% end %>
+<%= link_to 'Вопросы', game_questions_path(game_id: game), class: 'btn btn-warning' %>
