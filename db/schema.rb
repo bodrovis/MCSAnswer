@@ -10,9 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_24_153529) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_20_111308) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievement_ownables", force: :cascade do |t|
+    t.bigint "achievement_id", null: false
+    t.string "ownable_type", null: false
+    t.bigint "ownable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["achievement_id"], name: "index_achievement_ownables_on_achievement_id"
+    t.index ["ownable_type", "ownable_id"], name: "index_achievement_ownables_on_ownable"
+    t.index ["ownable_type", "ownable_id"], name: "index_achievement_ownables_on_ownable_type_and_ownable_id"
+  end
+
+  create_table "achievements", force: :cascade do |t|
+    t.string "title"
+    t.text "file_data"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -138,6 +157,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_24_153529) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "achievement_ownables", "achievements"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "games"

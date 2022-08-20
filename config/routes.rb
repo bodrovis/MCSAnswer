@@ -3,6 +3,9 @@
 # rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   namespace :admin do
+    resources :achievements, only: %i[index new create show destroy]
+    resources :achievement_ownables, only: %i[new create]
+
     resources :teams
     resources :users, only: %i[index destroy]
 

@@ -3,7 +3,7 @@
     <%= link_to team.title, team_path(team), data: {'turbo-frame': '_top'} %>
   </div>
   <td class="col-7">
-    <% team.playing_teams.game_published_finished(5).each do |playing_team| %>
+    <% team.playing_teams.includes(:game).game_published_finished(5).each do |playing_team| %>
       <span class="badge bg-success d-inline-block me-2">
         <%= playing_team.place %> / <%= playing_team.game.playing_teams_count %>
       </span>

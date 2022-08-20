@@ -32,6 +32,10 @@
                 <% if policy([:admin, :team]).index? %>
                   <li><%= link_to t('menu.teams_admin'), admin_teams_path, class: 'dropdown-item' %></li>
                 <% end %>
+
+                <% if policy([:admin, :achievement]).index? %>
+                  <li><%= link_to t('menu.achievements_admin'), admin_achievements_path, class: 'dropdown-item' %></li>
+                <% end %>
               </ul>
             </li>
           </ul>

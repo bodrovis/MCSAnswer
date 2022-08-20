@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "achievements", render(@achievement) %>
+<%= turbo_stream.replace Achievement.new, partial: 'admin/achievements/form', locals: { achievement: Achievement.new } %>
+<%= prepend_flash %>

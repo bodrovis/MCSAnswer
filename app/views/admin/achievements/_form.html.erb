@@ -1,0 +1,37 @@
+<%= turbo_frame_tag achievement do %>
+  <%= form_with model: [:admin, achievement] do |f| %>
+    <%= render 'shared/errors', object: achievement %>
+
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :title %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :description %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.text_area :description, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <%= f.label :file_data %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.text_area :file_data, class: 'form-control' %>
+      </div>
+    </div>
+
+    <%= f.submit t('global.button.submit'), class: 'btn btn-primary' %>
+  <% end %>
+<% end %>

@@ -1,0 +1,15 @@
+<% provide :page_title, t('.title') %>
+<% currently_at t('menu.achievements_admin') %>
+
+<h1 class="mb-4"><%= t('.title') %></h1>
+
+<%= link_to t('.add_achievement'), new_admin_achievement_path, class: 'btn btn-primary',
+  data: { turbo_frame: dom_id(Achievement.new) } %>
+
+<div class="my-3">
+  <%= turbo_frame_tag Achievement.new %>
+</div>
+
+<%= turbo_frame_tag "achievements" do %>
+  <%= render @achievements %>
+<% end %>

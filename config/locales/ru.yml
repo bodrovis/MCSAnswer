@@ -1,6 +1,14 @@
 ru:
   activerecord:
     attributes:
+      achievement_ownable:
+        ownable_type: Тип
+        ownable_id: Идентификатор цели
+        achievement_id: Достижение
+      achievement:
+        title: Название
+        description: Описание
+        file_data: Данные файла
       game_player:
         user_id: Пользователь
         user: Пользователь
@@ -46,6 +54,7 @@ ru:
     teams_admin: Команды (админ)
     profile: Профиль
     teams: Команды
+    achievements_admin: Достижения (админ)
   global:
     errors:
       invalid_format: имеет неверный формат
@@ -69,6 +78,19 @@ ru:
       already_signed_in: Вы уже вошли в систему.
       not_authorized: У вас нет прав на выполнение этого действия.
   admin:
+    achievement_ownables:
+      create:
+        success: Добавлено!
+    achievements:
+      index:
+        title: Достижения
+        add_achievement: Добавить достижение
+      create:
+        success: Достижение добавлено!
+      destroy:
+        success: Достижение удалено!
+      show:
+        add_achievement_ownable: Добавить для команды
     teams:
       index:
         title: Команды

@@ -1,0 +1,12 @@
+<%= turbo_frame_tag achievement do %>
+  <h3 class="my-3">
+    <%= link_to achievement.title, admin_achievement_path(achievement), data: {turbo_frame: '_top'} %>
+  </h3>
+
+  <%= achievement.file_data.html_safe %>
+
+  <p><%= achievement.description %></p>
+
+  <%= link_to t('global.button.delete'), admin_achievement_path(achievement), class: 'btn btn-danger',
+    data: {turbo_method: :delete, turbo_confirm: t('global.dialog.sure')} %>
+<% end %>

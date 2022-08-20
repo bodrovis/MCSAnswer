@@ -14,7 +14,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
-    @user.validate
 
     if verify_captchas && @user.save
       sign_in @user
@@ -25,6 +24,7 @@ class UsersController < ApplicationController
         end
       end
     else
+      @user.validate
       render :new
     end
   end

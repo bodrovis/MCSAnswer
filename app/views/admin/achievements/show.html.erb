@@ -1,0 +1,26 @@
+<% provide :page_title, @achievement.title %>
+<% currently_at t('menu.achievements_admin') %>
+
+<h1 class="mb-4">
+  <%= @achievement.title %>
+</h1>
+
+<%= @achievement.file_data.html_safe %>
+
+<p><%= @achievement.description %></p>
+
+<%= link_to t('.add_achievement_ownable'), new_admin_achievement_ownable_path(achievement_id: @achievement),
+  class: 'btn btn-primary',
+  data: { turbo_frame: dom_id(AchievementOwnable.new) } %>
+
+<div class="my-3">
+  <%= turbo_frame_tag AchievementOwnable.new %>
+</div>
+
+<h2>Команды</h2>
+
+<%= turbo_frame_tag 'teams' do %>
+  <% @teams.each do |team| %>
+    <%= render 'admin/achievements/team', team: team %>
+  <% end %>
+<% end %>

@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "achievement_team_#{dom_id(team)}" do %>
+  <section class="my-3">
+    <%= link_to team.title, team_path(team), data: {'turbo-frame': '_top'} %>
+  </section>
+<% end %>
