@@ -19,6 +19,12 @@ class GamesController < ApplicationController
     redirect_to game_answers_path(game_id: @game), status: :see_other
   end
 
+  def fill_empty
+    Games::FillEmptyService.call(@game)
+
+    redirect_to game_answers_path(game_id: @game), status: :see_other
+  end
+
   private
 
   def set_game!

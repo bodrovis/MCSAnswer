@@ -16,6 +16,9 @@
   <% if policy(@game).recalculate? %>
     <%= link_to 'Пересчитать итог', recalculate_game_path(@game), class: 'btn btn-warning', data: {turbo_method: :patch} %>
   <% end %>
+  <% if policy(@game).fill_empty? %>
+    <%= link_to 'Заполнить пустыми', fill_empty_game_path(@game), class: 'btn btn-warning', data: {turbo_method: :patch} %>
+  <% end %>
 </div>
 
 <%= turbo_stream_from(@game, :answers) %>

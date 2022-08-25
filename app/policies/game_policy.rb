@@ -51,4 +51,9 @@ class GamePolicy < ApplicationPolicy
     (record.published? &&
       record.hosted_by?(user)) || user.admin_role?
   end
+
+  def fill_empty?
+    (record.published? &&
+      record.hosted_by?(user)) || user.admin_role?
+  end
 end

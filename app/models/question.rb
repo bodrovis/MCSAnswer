@@ -13,4 +13,8 @@ class Question < ApplicationRecord
   def answer_by!(team)
     answers.find_by playing_team: team, game:
   end
+
+  def answered_by?(team)
+    answers.find_by(playing_team: team, game:).present?
+  end
 end

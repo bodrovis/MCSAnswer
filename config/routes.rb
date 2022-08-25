@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :games, only: %i[index show] do
     member do
       patch 'recalculate'
+      patch 'fill_empty'
     end
 
     resources :playing_teams, only: %i[index]
