@@ -197,7 +197,7 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
-    recaptcha (5.10.1)
+    recaptcha (5.11.0)
       json
     redis (4.8.0)
     regexp_parser (2.5.0)
@@ -300,4 +300,4 @@ RUBY VERSION
    ruby 3.1.1p18
 
 BUNDLED WITH
-   2.3.19
+   2.3.21
