@@ -36,6 +36,7 @@ class GamePolicy < ApplicationPolicy
       record.hosted_by?(user) &&
       !record.finished?
   end
+  
 
   def answer_question?
     record.published? &&
