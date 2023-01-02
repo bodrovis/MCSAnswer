@@ -8,7 +8,9 @@
     <section>
       <p>
         <strong><%= link_to question.game.title, admin_game_path(question.game) %></strong>
-        (<%= l question.game.starts_at, format: :longer %>)
+        <% if question.game.starts_at.present? %>
+          (<%= l question.game.starts_at, format: :longer %>)
+        <% end %>
       </p>
       <p>
         <%= question.body.html_safe %>

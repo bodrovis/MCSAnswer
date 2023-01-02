@@ -7,7 +7,7 @@ class Question < ApplicationRecord
                   against: %i[body answer],
                   using: {
                     tsearch: {
-                      prefix: true
+                      dictionary: "russian"
                     }
                   }
 
