@@ -42,6 +42,14 @@
         <% end %>
 
         <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+          <% if policy(:page).search? %>
+            <li>
+              <%= form_tag search_pages_path, method: :get do %>
+                <%= text_field_tag 'term', '', minlength: 2, required: true, class: 'form-control' %>
+              <% end %>
+            </li>
+          <% end %>
+          </li>
           <% if user_signed_in? %>
             <li class="dropdown">
               <%= link_to '#',

@@ -12,6 +12,10 @@ class AnswersController < ApplicationController
     authorize @game, :index_answers?
   end
 
+  def edit
+    authorize @answer
+  end
+
   def create
     ProcessAnswerJob.perform_later @question, @game, params[:answer], current_user
 
@@ -29,10 +33,6 @@ class AnswersController < ApplicationController
     respond_to do |format|
       format.turbo_stream { head(:ok) }
     end
-  end
-
-  def edit
-    authorize @answer
   end
 
   def update

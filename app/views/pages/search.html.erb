@@ -1,0 +1,26 @@
+<% provide :page_title, t('.title') %>
+<% currently_at t('menu.home') %>
+
+<h1 class="mb-4"><%= t('.title') %></h1>
+
+<article class="mt-4">
+  <% @questions.each do |question| %>
+    <section>
+      <p>
+        <strong><%= link_to question.game.title, admin_game_path(question.game) %></strong>
+        (<%= l question.game.starts_at, format: :longer %>)
+      </p>
+      <p>
+        <%= question.body.html_safe %>
+      </p>
+
+      <p class="hide-reveal">
+        <span><%= question.answer.html_safe %></span>
+      </p>
+
+      <hr/>
+    </section>
+  <% end %>
+
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+</article>

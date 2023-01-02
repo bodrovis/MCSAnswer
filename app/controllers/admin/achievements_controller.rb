@@ -10,6 +10,10 @@ module Admin
       @achievements = Achievement.order created_at: :desc
     end
 
+    def show
+      @teams = @achievement.teams
+    end
+
     def new
       @achievement = Achievement.new
     end
@@ -23,10 +27,6 @@ module Admin
       else
         render :new
       end
-    end
-
-    def show
-      @teams = @achievement.teams
     end
 
     def destroy

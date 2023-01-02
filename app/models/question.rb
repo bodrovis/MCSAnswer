@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
 class Question < ApplicationRecord
+  include PgSearch::Model
+
+  pg_search_scope :search_data,
+                  against: %i[body answer],
+                  using: {
+                    tsearch: {
+                      prefix: true
+                    }
+                  }
+
   belongs_to :game, counter_cache: true
   acts_as_list scope: :game, sequential_updates: false
   has_many :answers, dependent: :destroy

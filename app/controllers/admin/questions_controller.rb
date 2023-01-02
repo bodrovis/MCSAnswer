@@ -11,6 +11,10 @@ module Admin
       @question = @game.build_next_question
     end
 
+    def edit
+      authorize @question
+    end
+
     def create
       @question = @game.questions.build question_params
 
@@ -26,10 +30,6 @@ module Admin
       else
         render :new
       end
-    end
-
-    def edit
-      authorize @question
     end
 
     def update

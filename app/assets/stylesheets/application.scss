@@ -39,7 +39,9 @@ table.team-results {
 
 .hide-reveal {
   & > span {
-    background-color: black;
+    background-color: var(--bs-body-color);
+    display: block;
+    width: 100%;
   }
   
   &:hover {

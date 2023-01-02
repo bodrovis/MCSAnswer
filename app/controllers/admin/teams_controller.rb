@@ -10,9 +10,13 @@ module Admin
       @teams = Team.order created_at: :desc
     end
 
+    def show; end
+
     def new
       @team = Team.new
     end
+
+    def edit; end
 
     def create
       @team = Team.new team_params
@@ -27,10 +31,6 @@ module Admin
         render :new
       end
     end
-
-    def show; end
-
-    def edit; end
 
     def update
       if @team.update team_params

@@ -166,6 +166,8 @@ ru:
   pages:
     index:
       title: Главная
+    search:
+      title: Поиск
   users:
     update:
       success: Профиль обновлён!

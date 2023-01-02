@@ -12,6 +12,8 @@ module Admin
       @game_player = @playing_team.game_players.build
     end
 
+    def edit; end
+
     def create
       @game_player = @playing_team.game_players.build game_player_params
 
@@ -25,8 +27,6 @@ module Admin
         render :new
       end
     end
-
-    def edit; end
 
     def update
       if @game_player.update game_player_params

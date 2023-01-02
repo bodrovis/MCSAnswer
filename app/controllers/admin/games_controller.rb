@@ -10,9 +10,13 @@ module Admin
       @games = Game.includes(:host).order created_at: :desc
     end
 
+    def show; end
+
     def new
       @game = Game.new
     end
+
+    def edit; end
 
     def create
       @game = Game.new game_params
@@ -31,10 +35,6 @@ module Admin
 
       head :ok
     end
-
-    def show; end
-
-    def edit; end
 
     def update
       if @game.update game_params

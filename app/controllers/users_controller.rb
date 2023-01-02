@@ -8,9 +8,17 @@ class UsersController < ApplicationController
   before_action :authorize_user!
   after_action :verify_authorized
 
+  def index
+    @users = User.played_at_least_once
+  end
+
+  def show; end
+
   def new
     @user = User.new
   end
+
+  def edit; end
 
   def create
     @user = User.new user_params
@@ -28,14 +36,6 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
-  def index
-    @users = User.played_at_least_once
-  end
-
-  def show; end
-
-  def edit; end
 
   def update
     if @user.update user_params

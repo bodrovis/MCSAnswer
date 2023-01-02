@@ -22,7 +22,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :pages, only: :index
+  resources :pages, only: :index do
+    collection do
+      get 'search'
+    end
+  end
 
   resources :games, only: %i[index show] do
     member do

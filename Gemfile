@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.1'
+ruby '3.1.3'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'pg', '~> 1.0'
@@ -13,7 +13,7 @@ gem 'rails', '~> 7.0.3'
 gem 'propshaft'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 6.0'
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails'
@@ -27,11 +27,7 @@ gem 'stimulus-rails'
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem 'cssbundling-rails'
 
-# Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 4.0'
-
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
+gem 'redis', '~> 5'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
@@ -48,11 +44,12 @@ gem 'pundit', '~> 2.1'
 gem 'activerecord-import', '~> 1.4'
 gem 'acts_as_list', '~> 1.0'
 gem 'after_commit_everywhere', '~> 1'
-gem 'pagy', '~> 5.10'
+gem 'pagy', '~> 6'
+gem 'pg_search', '~> 2'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-brotli', '~> 1.2'
 gem 'recaptcha', '~> 5.10'
-gem 'sidekiq', '~> 6'
+gem 'sidekiq', '~> 7'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing', '~> 1.2'
