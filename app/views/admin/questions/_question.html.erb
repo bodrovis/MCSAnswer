@@ -3,7 +3,7 @@
     <p>
       <i class="bi bi-arrows-move js-sort-handle fs-3"></i>
       <span class="badge bg-info" data-sortable-target="position"><%= question.position %></span>
-      <strong class=""><%= question.body %></strong>
+      <%= question.body.html_safe %>
     </p>
     
     <p class="hide-reveal">
