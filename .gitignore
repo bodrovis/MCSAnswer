@@ -40,4 +40,9 @@
 /node_modules
 .env
 
-.yarn/
+.yarn/*
+!.yarn/cache
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions

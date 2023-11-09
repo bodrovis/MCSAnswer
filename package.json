@@ -21,5 +21,10 @@
     "build:css:dev": "sass --style compressed ./app/assets/stylesheets/application.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
     "build:css": "sass --style compressed ./app/assets/stylesheets/application.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules && postcss ./app/assets/builds/application.css --replace --use autoprefixer --no-map",
     "build": "esbuild app/javascript/*.* --bundle --minify --outdir=app/assets/builds"
-  }
+  },
+  "engine": {
+    "node": "20.9.0",
+    "yarn": "1.22.19"
+  },
+  "packageManager": "yarn@4.0.1"
 }
