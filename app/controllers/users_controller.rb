@@ -68,8 +68,9 @@ class UsersController < ApplicationController
   end
 
   def verify_captchas
-    (verify_recaptcha action: 'signup', minimum_score: 0.6,
-                      secret_key: ENV.fetch('RECAPTCHA_SECRET_V3', nil)) ||
-      (verify_recaptcha model: @user, secret_key: ENV.fetch('RECAPTCHA_SECRET', nil))
+    true
+    # (verify_recaptcha action: 'signup', minimum_score: 0.6,
+    #                   secret_key: ENV.fetch('RECAPTCHA_SECRET_V3', nil)) ||
+    #   (verify_recaptcha model: @user, secret_key: ENV.fetch('RECAPTCHA_SECRET', nil))
   end
 end

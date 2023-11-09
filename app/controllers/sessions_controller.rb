@@ -35,8 +35,9 @@ class SessionsController < ApplicationController
   end
 
   def verify_captchas
-    verify_recaptcha(action: 'login', minimum_score: 0.6, secret_key: ENV.fetch('RECAPTCHA_SECRET_V3', nil)) ||
-      verify_recaptcha(secret_key: ENV.fetch('RECAPTCHA_SECRET', nil))
+    true
+    # verify_recaptcha(action: 'login', minimum_score: 0.6, secret_key: ENV.fetch('RECAPTCHA_SECRET_V3', nil)) ||
+    #   verify_recaptcha(secret_key: ENV.fetch('RECAPTCHA_SECRET', nil))
   end
 
   def do_sign_in

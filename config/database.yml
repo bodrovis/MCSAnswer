@@ -17,7 +17,7 @@ development:
   username: <%= ENV['PG_USER'] %>
   password: <%= ENV['PG_PASS'] %>
   host: localhost
-  port: 5432
+  port: <%= ENV['PG_PORT'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

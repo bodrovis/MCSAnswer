@@ -27,19 +27,19 @@ class ApplicationService
     end
   end
 
-  def broadcast(channel, template, **params)
+  def broadcast(channel, template, **)
     Turbo::StreamsChannel.broadcast_render_to(
       channel,
       template:,
-      **params
+      **
     )
   end
 
-  def broadcast_later(channel, template, **params)
+  def broadcast_later(channel, template, **)
     Turbo::StreamsChannel.broadcast_render_later_to(
       channel,
       template:,
-      **params
+      **
     )
   end
 end
