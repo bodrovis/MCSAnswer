@@ -33,9 +33,7 @@
   </article>
 </div>
 
-<h2 class="mt-5">
-  <%= link_to "Вопросы", "#questions-list", data: {'bs-toggle': 'collapse'} %>
-</h2>
+<h2 class="mt-5">Вопросы</h2>
 
 <%= link_to t('.add_question'), new_admin_game_question_path(@game), class: 'btn btn-primary',
   data: { turbo_frame: dom_id(Question.new) } %>
@@ -44,9 +42,9 @@
   <%= turbo_frame_tag Question.new %>
 </div>
 
-<div class="collapse show mt-2" id="questions-list">
+<div class="mt-2">
   <article>
-    <%= turbo_frame_tag "questions", data: {controller: 'sortable', 'sortable-game-value': @game.id} do %>
+    <%= tag.div id: 'questions', data: {controller: 'sortable', 'sortable-game-value': @game.id} do %>
       <%= render @game.questions.includes(:game).order(position: :asc) %>
     <% end %>
   </article>

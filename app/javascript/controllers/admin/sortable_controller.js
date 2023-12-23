@@ -13,6 +13,7 @@ export default class extends Controller {
 
     this.sortable = new Sortable(this.element, {
       handle: ".js-sort-handle",
+      direction: 'vertical',
       onEnd: async (e) => {
         try {
           this.disable()
